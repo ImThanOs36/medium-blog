@@ -1,11 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Appbar from "../components/Appbar";
 import BlogCard from "../components/BlogCard"
 import { useBlogs } from "../hooks/useBlogs";
 
 function Blogs() {
   const { loading, blogs } = useBlogs();
-  const navigate = useNavigate()
   if (loading) {
     return <div>  <Appbar />Loading...</div>;
   }
