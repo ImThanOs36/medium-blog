@@ -15,7 +15,7 @@ function Blog() {
   return (
     <>
       <div>
-        <Appbar />
+        <Appbar isThat={false}/>
 
         <div className="flex justify-center py-20 h-full ">
           {loading ? <Loader /> :
