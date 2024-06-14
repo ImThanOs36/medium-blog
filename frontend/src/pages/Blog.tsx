@@ -3,8 +3,8 @@ import Dropdown from "./Dropdown"
 
 
 
-function Appbar({ isThat }: { isThat: boolean }) {
-  
+function Appbar({ isThat } : { isThat: boolean }) {
+
   return (
     <div>
 

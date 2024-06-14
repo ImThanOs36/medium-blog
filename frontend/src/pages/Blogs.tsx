@@ -1,58 +1,40 @@
-import { Link, useNavigate } from "react-router-dom";
-import Appbar from "../components/Appbar";
+
+import { useParams } from "react-router-dom"
 import BlogCard from "../components/BlogCard"
-import { useBlogs } from "../hooks/useBlogs";
+import { useBlog } from "../hooks/useBlog"
+import Appbar from "../components/Appbar";
 import Loader from "../ui/Loader";
 
 
+function Blog() {
+  const { id } = useParams()
+  const { loading, blog } = useBlog({ id: id || "1" });
 
-function Blogs() {
-  const { loading, blogs, authError } = useBlogs();
-  const navigate = useNavigate()
-  const reverseBlogs = [...blogs].reverse()
-  console.log(reverseBlogs)
-  if (authError) {
-    navigate("/signin")
-  }
 
+  // console.log(blog)
   return (
-    <div>
+    <>
+      <div>
+        <Appbar isThat={false}/>
 
-      <Appbar isThat={true}/>
+        <div className="flex justify-center py-20 h-full ">
+          {loading ? <Loader /> :
+            <div className="w-full max-w-screen-md  ">
+              <BlogCard
+                key={blog.id}
+                id={blog.id}
+                author={blog.author.name || "Anonymous"}
+                title={blog.title}
+                content={blog.content}
+                createAt={blog.createAt || "123"}
+              />
+            </div>
+          }
 
-
-      {loading ? <Loader /> :
-        <div className="flex justify-center py-20 h-full" onClick={() => {
-
-        }}>
-          <div className="w-auto max-w-4xl flex flex-col gap-10 ">
-
-
-            {reverseBlogs.map(blog => (
-
-              <Link to={`/blog/${blog.id}`} key={blog.id}>
-
-                <BlogCard
-
-                  key={blog.id}
-                  id={blog.id}
-                  author={blog.author.name || "anonymous"}
-                  title={blog.title}
-                  content={blog.content.slice(0, 200) + "..."}
-                  createAt={blog.createAt || "123"}
-
-
-                />
-
-              </Link>
-
-            ))}
-          </div>
         </div>
-      }
-    </div>
-
-  );
+      </div>
+    </>
+  )
 }
 
-export default Blogs
+export default Blog
