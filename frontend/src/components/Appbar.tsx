@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom"
 import Dropdown from "./Dropdown"
 
+interface isThatType {
+    isThat: boolean;
+  }
 
-
-function Appbar({ isThat }: { isThat: boolean }) {
+function Appbar({ isThat }: isThatType) {
     return (
         <div>
 

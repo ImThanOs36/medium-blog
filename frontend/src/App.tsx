@@ -17,7 +17,7 @@ function App() {
           <Route path="/dash" element={<Dropdown/>} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
-          <Route path="/blog/:id" element={<Blog isThat={false} />} />
+          <Route path="/blog/:id" element={<Blog/>} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/publish" element={<Publish/>} />
         </Routes>
