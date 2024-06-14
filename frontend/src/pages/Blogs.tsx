@@ -1,14 +1,13 @@
 
-import { useParams } from "react-router-dom"
 import BlogCard from "../components/BlogCard"
-import { useBlog } from "../hooks/useBlog"
 import Appbar from "../components/Appbar";
 import Loader from "../ui/Loader";
+import { useBlogs } from "../hooks/useBlogs";
 
 
-function Blog() {
-  const { id } = useParams()
-  const { loading, blog } = useBlog({ id: id || "1" });
+function Blogs() {
+
+  const { loading, blogs } = useBlogs();
 
 
   // console.log(blog)
@@ -21,12 +20,12 @@ function Blog() {
           {loading ? <Loader /> :
             <div className="w-full max-w-screen-md  ">
               <BlogCard
-                key={blog.id}
-                id={blog.id}
-                author={blog.author.name || "Anonymous"}
-                title={blog.title}
-                content={blog.content}
-                createAt={blog.createAt || "123"}
+                key={blogs.id}
+                id={blogs.id}
+                author={blogs.author.name || "Anonymous"}
+                title={blogs.title}
+                content={blogs.content}
+                createAt={blogs.createAt || "123"}
               />
             </div>
           }
@@ -37,4 +36,4 @@ function Blog() {
   )
 }
 
-export default Blog
+export default Blogs
