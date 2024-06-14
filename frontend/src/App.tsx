@@ -5,7 +5,7 @@ import Blog from './pages/Blog';
 import Blogs from './pages/Blogs';
 import Publish from './pages/Publish';
 import './App.css'
-import Dropdown from './components/Dropdown';
+
 
 function App() {
 
@@ -14,11 +14,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Blogs/>} />
-          <Route path="/dash" element={<Dropdown/>} />
+          <Route path="/blogs" element={<Blogs />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/blog/:id" element={<Blog/>} />
-          <Route path="/blogs" element={<Blogs />} />
           <Route path="/publish" element={<Publish/>} />
         </Routes>
       </BrowserRouter>
