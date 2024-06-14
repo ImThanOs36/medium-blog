@@ -25,13 +25,13 @@ export const useBlogs = () => {
           Authorization: localStorage.getItem("token"),
         },
       })
-      .then((response) => {
+      .then((response: { data: any; }) => {
         console.log("API Response:", response.data); // Log the response to check its structure
         const responseData = response.data;
         setBlogs(responseData.blogs);
         setLoading(false);
       })
-      .catch((e) => {
+      .catch((e: { response: { status: number; }; }) => {
         if (e.response.status == 401) {
           setauthError(true);
         }
