@@ -10,10 +10,12 @@ interface Blogs {
   author: {
     name: string;
   };
+  createAt: string;
 }
 
 export const useBlogs = () => {
   const [loading, setLoading] = useState(true);
+  const [authError, setauthError] = useState(false);
   const [blogs, setBlogs] = useState<Blogs[]>([]);
 
   useEffect(() => {
@@ -28,11 +30,17 @@ export const useBlogs = () => {
         const responseData = response.data;
         setBlogs(responseData.blogs);
         setLoading(false);
+      })
+      .catch((e) => {
+        if (e.response.status == 401) {
+          setauthError(true);
+        }
       });
   }, []);
-
+  
   return {
     loading,
     blogs,
+    authError,
   };
 };

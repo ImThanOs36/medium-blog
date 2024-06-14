@@ -8,6 +8,7 @@ function Signin() {
     <div className='flex items-center h-screen w-full justify-center text-xl'>
         <Auth type='signin' />
     </div>
+    
     <Quote />
 </div>
   )

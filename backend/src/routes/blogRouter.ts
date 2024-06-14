@@ -18,9 +18,9 @@ blogRouter.get("/bulk", async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
-  const blogs = await prisma.blog.findMany({
+  const data = await prisma.blog.findMany({
     select: {
-      id:true,
+      id: true,
       title: true,
       content: true,
       author: {
@@ -28,9 +28,10 @@ blogRouter.get("/bulk", async (c) => {
           name: true,
         },
       },
+      createAt: true,
     },
   });
-
+  const blogs = data.filter((blog) => blog.title !== "" && blog.content !== "");
   return c.json({ blogs: blogs });
 });
 blogRouter.get("/:id", async (c) => {
@@ -39,21 +40,21 @@ blogRouter.get("/:id", async (c) => {
   }).$extends(withAccelerate());
   const id = c.req.param("id");
 
-
   const blog = await prisma.blog.findFirst({
     where: {
       id: Number(id),
     },
-    select:{
-      id:true,
-      title:true,
-      content:true,
-      author:{
-        select:{
-          name:true,
-        }
-      }
-    }
+    select: {
+      id: true,
+      title: true,
+      content: true,
+      author: {
+        select: {
+          name: true,
+        },
+      },
+      createAt: true,
+    },
   });
   if (!blog) {
     return c.json({ message: "invalid blog id" });

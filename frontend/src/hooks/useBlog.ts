@@ -10,11 +10,19 @@ interface Blog {
   author: {
     name: string;
   };
+  createAt: string;
 }
 
 export const useBlog = ({ id }: { id: string }) => {
   const [loading, setLoading] = useState(true);
- const [blog, setBlog] = useState<Blog>({ id: 0, publishedDate: "", content: "", title: "", author: { name: "" } });
+  const [blog, setBlog] = useState<Blog>({
+    id: 0,
+    publishedDate: "",
+    content: "",
+    title: "",
+    author: { name: "" },
+    createAt: "",
+  });
   useEffect(() => {
     axios
       .get(`${BACKEND_URL}/api/v1/blog/${id}`, {
@@ -28,7 +36,8 @@ export const useBlog = ({ id }: { id: string }) => {
         const responseData = response.data;
         setBlog(responseData);
         setLoading(false);
-      });
+      })
+      
   }, [id]);
 
   return {

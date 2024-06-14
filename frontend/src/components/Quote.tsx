@@ -2,13 +2,13 @@
 
 function Quote() {
   return (
-    <div className="bg-slate-200 h-screen flex flex-col justify-center">
-    <div className="flex justify-center">
-       <div className="max-w-md text-center text-xl">
-           Hello there
-       </div>
+    <div className="bg-black h-screen flex-col justify-center font-clash_display hidden md:flex">
+      <div className="flex justify-center">
+        <div className="max-w-md text-center ">
+          <h1 className="text-3xl font-bold text-white">Welcome to BLOG it</h1>
+        </div>
+      </div>
     </div>
-   </div>
   )
 }
 

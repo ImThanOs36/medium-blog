@@ -7,11 +7,16 @@
     "@imthanos/common-app": "^1.0.4",
     "@prisma/client": "^5.15.0",
     "@prisma/extension-accelerate": "^1.1.0",
+    "crypto": "^1.0.1",
+    "crypto-js": "^4.2.0",
     "hono": "^4.4.2",
+    "install": "^0.13.0",
+    "npm": "^10.8.1",
     "prisma": "^5.15.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240529.0",
+    "@types/node": "^20.14.2",
     "wrangler": "^3.57.2"
   }
 }

@@ -1,50 +1,58 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Appbar from "../components/Appbar";
 import BlogCard from "../components/BlogCard"
 import { useBlogs } from "../hooks/useBlogs";
+import Loader from "../ui/Loader";
+
+
 
 function Blogs() {
-  const { loading, blogs } = useBlogs();
-  if (loading) {
-    return <div>  <Appbar />Loading...</div>;
+  const { loading, blogs, authError } = useBlogs();
+  const navigate = useNavigate()
+  const reverseBlogs = [...blogs].reverse()
+  console.log(reverseBlogs)
+  if (authError) {
+    navigate("/signin")
   }
 
   return (
     <div>
 
-      <Appbar />
-      <div className="flex justify-center py-7" onClick={() => {
+      <Appbar isThat={true}/>
 
-      }}>
-        <div className="w-2/4 flex flex-col gap-10">
 
-        
-        {blogs.map(blog => (
+      {loading ? <Loader /> :
+        <div className="flex justify-center py-20 h-full" onClick={() => {
 
-          <Link to={`/blog/${blog.id}`}>
+        }}>
+          <div className="w-auto max-w-4xl flex flex-col gap-10 ">
 
-            <BlogCard
 
-              key={blog.id}
-              id={blog.id}
-              author={blog.author.name || "anonymous"}
-              title={blog.title}
-              content={blog.content}
-              publishedDate={blog.publishedDate || "123"}
+            {reverseBlogs.map(blog => (
 
-            />
+              <Link to={`/blog/${blog.id}`} key={blog.id}>
 
-          </Link>
+                <BlogCard
 
-        ))}
+                  key={blog.id}
+                  id={blog.id}
+                  author={blog.author.name || "anonymous"}
+                  title={blog.title}
+                  content={blog.content.slice(0, 200) + "..."}
+                  createAt={blog.createAt || "123"}
+
+
+                />
+
+              </Link>
+
+            ))}
+          </div>
         </div>
-      </div>
+      }
     </div>
 
   );
-
-
-
 }
 
 export default Blogs
