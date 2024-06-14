@@ -20,8 +20,8 @@ function BlogCard({
 
 }: BlogCardProps) {
     return (
-        <div className="font-clash_display border-b-2 border-gray-200 p-2 w-full" key={id}>
-            <div className=" gap-5 justify-between flex flex-col-reverse sm:flex-row">
+        <div className="font-clash_display border-b-2 border-gray-200 px-5 py-2 w-full" key={id}>
+            <div className=" gap-3 justify-between flex flex-col-reverse sm:flex-row">
 
                 <div className="w-3/4 flex flex-col gap-6 ">
                     <h2 className="text-2xl capitalize font-semibold">{title}</h2>
