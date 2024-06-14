@@ -1,41 +1,40 @@
-import { Link } from "react-router-dom"
-import Dropdown from "../components/Dropdown"
+
+import { useParams } from "react-router-dom"
+import BlogCard from "../components/BlogCard"
+import { useBlog } from "../hooks/useBlog"
+import Appbar from "../components/Appbar";
+import Loader from "../ui/Loader";
 
 
+function Blog() {
+  const { id } = useParams()
+  const { loading, blog } = useBlog({ id: id || "1" });
 
-function Appbar({ isThat } : { isThat: boolean }) {
 
+  // console.log(blog)
   return (
-    <div>
+    <>
+      <div>
+        <Appbar isThat={false}/>
 
-      <nav className="backdrop-blur-xl bg-black/90  fixed top-0 left-0 right-0 border-b-4 border-indigo-500 z-10 ">
-        <div className="max-w-screen-xl flex flex-wrap items-center  mx-auto p-4 justify-around sm:justify-between">
-          <Link to={"/"}> <h1 className="font-clash_display text-3xl font-bold text-white">  BLOG  It</h1></Link>
-
-          <div className="flex items-center gap-5 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            {isThat ? <nav>
-
-              <div className="font-bold text-white bg-indigo-500 px-5 py-2 rounded-full">
-
-                <Link to={"/publish"}>New</Link>
-              </div>
-
-            </nav>
-              : null
-
-            }
-
-            <Dropdown />
-
-
-
-
-          </div>
+        <div className="flex justify-center py-20 h-full ">
+          {loading ? <Loader /> :
+            <div className="w-full max-w-screen-md  ">
+              <BlogCard
+                key={blog.id}
+                id={blog.id}
+                author={blog.author.name || "Anonymous"}
+                title={blog.title}
+                content={blog.content}
+                createAt={blog.createAt || "123"}
+              />
+            </div>
+          }
 
         </div>
-      </nav>
-    </div>
+      </div>
+    </>
   )
 }
 
-export default Appbar
+export default Blog
