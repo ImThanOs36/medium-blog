@@ -11,6 +11,7 @@ import { BACKEND_URL } from '../config'
 
 function Auth({ type }: { type: "signup" | "signin" }) {
     const navigate = useNavigate()
+    const [isError, setisError] = useState()
     const [postInput, setPostInputs] = useState<signupInput>({
         name: '',
         email: '',
@@ -23,11 +24,10 @@ function Auth({ type }: { type: "signup" | "signin" }) {
             const token = response.data.token;
             localStorage.setItem('token', "Bareer " + token);
             navigate("/blogs")
-            
-
         }
-        catch (e) {
-            console.log(e)
+        catch (e: any) {
+            // console.log(e)
+            setisError(e.response.message)
         }
 
 
@@ -35,7 +35,9 @@ function Auth({ type }: { type: "signup" | "signin" }) {
     return (
         <div className='font-satoshi'>
             <div className="mx-auto border bg-gray-50 px-4 py-4 rounded-md flex flex-col  ">
-
+                <div>
+                    {isError}
+                </div>
 
 
                 {type === 'signup' ? <LabelInput label='Name' placeholder='ThanOs' onChange={(e) => {

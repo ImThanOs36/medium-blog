@@ -7,8 +7,6 @@
     "@imthanos/common-app": "^1.0.4",
     "@prisma/client": "^5.15.0",
     "@prisma/extension-accelerate": "^1.1.0",
-    "crypto": "^1.0.1",
-    "crypto-js": "^4.2.0",
     "hono": "^4.4.2",
     "install": "^0.13.0",
     "npm": "^10.8.1",
