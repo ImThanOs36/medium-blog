@@ -3,7 +3,7 @@
 function Dates({date}:{date:string}) {
     const res = new Date(date).toLocaleString("en-US", { timeZone: 'Asia/Kolkata' })
   return (
-   <div className="font-satoshi text-sm font-sanst">
+   <div className="font-satoshi text-sm font-medium text-indigo-500 ">
     <span><i>{res}</i></span>
    </div>
   )
