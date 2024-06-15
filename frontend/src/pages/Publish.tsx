@@ -52,7 +52,6 @@ function Publish() {
                   Authorization: localStorage.getItem("token"),
                 },
                 
-
               }
               
             )

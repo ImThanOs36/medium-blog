@@ -18,7 +18,7 @@ function Blogs() {
   return (
     <div>
 
-      <Appbar isThat={true}/>
+      <Appbar isThat={true} />
 
 
       {loading ? <Loader /> :
@@ -40,8 +40,7 @@ function Blogs() {
                   title={blog.title}
                   content={blog.content.slice(0, 200) + "..."}
                   createAt={blog.createAt || "123"}
-
-
+                  line={true}
                 />
 
               </Link>

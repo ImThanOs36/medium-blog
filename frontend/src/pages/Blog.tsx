@@ -20,6 +20,7 @@ function Blog() {
         <div className="flex justify-center py-20 h-full ">
           {loading ? <Loader /> :
             <div className="w-full max-w-screen-md  ">
+             
               <BlogCard
                 key={blog.id}
                 id={blog.id}
@@ -27,6 +28,7 @@ function Blog() {
                 title={blog.title}
                 content={blog.content}
                 createAt={blog.createAt || "123"}
+                line={false}
               />
             </div>
           }
