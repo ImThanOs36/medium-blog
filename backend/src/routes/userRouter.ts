@@ -73,7 +73,7 @@ userRouter.post("/signin", async (c) => {
     });
 
     if (!user) {
-      return c.json({ message: "User does not exists" });
+      return c.status(401).json({ message: "User does not exists" });
     }
 
     const token = await sign({ id: user.id }, c.env.JWT_SECRET);
