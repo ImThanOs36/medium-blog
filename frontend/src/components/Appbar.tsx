@@ -16,7 +16,7 @@ function Appbar({ isThat }: isThatType) {
                     <div className="flex items-center gap-5 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                         {isThat ? <nav>
 
-                            <div className="font-bold text-white bg-indigo-500 px-5 py-2 rounded-full">
+                            <div className="font-bold text-white bg-indigo-500 px-5 py-2 rounded-full hover:scale-105">
 
                                 <Link to={"/publish"}>New</Link>
                             </div>

@@ -26,15 +26,15 @@ function Publish() {
       <Appbar isThat={false} />
       <div className="pt-40 p-3">
         <form className="max-w-sm mx-auto flex flex-col  gap-2">
-          <label htmlFor="title" className="block mb-2 text-sm font-semibold text-gray-900">Title</label>
-          <input type="text" name="title" id="title" className="text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Enter title ..." onChange={(e) => {
+          <label htmlFor="title" className="block mb-2 text-base font-semibold text-gray-900">Title</label>
+          <input type="text" name="title" id="title" className="text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 p-2" placeholder="Enter title ..." onChange={(e) => {
             setPostInputs(c => ({
               ...c,
               title: e.target.value,
             }))
           }} />
-          <label htmlFor="message" className="block mb-2 text-sm font-semibold text-gray-900 ">Your message</label>
-          <textarea id="message" rows={7} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Lets write what you feel ...." onChange={(e) => {
+          <label htmlFor="message" className="block mb-2 text-base font-semibold text-gray-900 ">Your message</label>
+          <textarea id="message" rows={7} className="block p-2.5 w-full text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Lets write what you feel ...." onChange={(e) => {
             setPostInputs(c => ({
               ...c,
               content: e.target.value
@@ -43,7 +43,7 @@ function Publish() {
 
 
 
-          <button type="button" className="text-white bg-[#050708] hover:bg-[#050708]/90  max-w-25 font-medium rounded-lg text-sm  py-2 px-3 text-center flex justify-center " onClick={() => {
+          <button type="button" className="text-white bg-[#050708] hover:bg-[#050708]/90  max-w-25 font-medium rounded-lg text-base  py-2 px-3 text-center flex justify-center " onClick={() => {
             
             if (checkInputs(post)) {
               setLoading(true)
