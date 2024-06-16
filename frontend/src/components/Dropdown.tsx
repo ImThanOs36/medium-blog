@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useState } from "react";
 
@@ -10,7 +10,7 @@ function Dropdown() {
   }
   return (
     <>
-      <div className="relative flex justify-center flex-col">
+      <div className="relative flex justify-center flex-col ">
 
 
         <button type="button" onClick={handleclick}> <div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full  dark:bg-gray-600 hover:scale-105">
@@ -20,18 +20,24 @@ function Dropdown() {
             </path></svg>
 
         </div></button>
+        <div className="transition-all">
 
-        {!isOpen ? null : <div id="dropdown" className="z-10 absolute top-16 -right-0 lg:-right-14   bg-black divide-y divide-gray-100 rounded-lg shadow px-1 w-40 text-center">
-          <ul className="py-2 text-base text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-            <li className="cursor-pointer" onClick={() => {
-              localStorage.removeItem('token');
-              navigate("/signin")
-            }}>
-              LOGOUT
-            </li>
-          </ul>
+
+          {!isOpen ? null : <div id="dropdown" className="z-10 absolute top-16 -right-0 lg:-right-14   bg-black divide-y divide-gray-100 rounded-lg shadow  w-40 text-center">
+            <ul className="py-2 px-2 text-base  text-gray-700 dark:text-gray-200 font-satoshi  " aria-labelledby="dropdownDefaultButton ">
+              <li className="cursor-pointer hover:bg-indigo-500 rounded-lg p-2 hover:font-medium" onClick={() => {
+                localStorage.removeItem('token');
+                navigate("/signin")
+              }}>
+                Log Out
+              </li>
+              <li className="hover:bg-indigo-500 rounded-lg p-2 hover:font-medium">
+                <Link to={"/me"}>Profile</Link>
+              </li>
+            </ul>
+          </div>
+          }
         </div>
-        }
       </div>
     </>
   )
