@@ -10,7 +10,7 @@ function Appbar({ isThat }: isThatType) {
         <div>
 
             <nav className="backdrop-blur-xl bg-black/90  fixed top-0 left-0 right-0 border-b-4 border-indigo-500 z-10 ">
-                <div className="max-w-screen-xl flex flex-wrap items-center gap-5 sm:gap-0 mx-auto p-4 justify-around sm:justify-between">
+                <div className="max-w-screen-xl flex flex-wrap items-center gap-5 sm:gap-0 mx-auto p-4 justify-between sm:justify-between">
                     <Link to={"/"}> <h1 className="font-clash_display text-3xl font-bold text-white">  BLOG  It</h1></Link>
 
                     <div className="flex items-center sm:gap-5 md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
