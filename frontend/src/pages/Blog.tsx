@@ -15,12 +15,12 @@ function Blog() {
   return (
     <>
       <div>
-        <Appbar isThat={false}/>
+        <Appbar isThat={false} />
 
         <div className="flex justify-center py-20 h-full ">
           {loading ? <Loader /> :
             <div className="w-full max-w-screen-md  ">
-             
+
               <BlogCard
                 key={blog.id}
                 id={blog.id}

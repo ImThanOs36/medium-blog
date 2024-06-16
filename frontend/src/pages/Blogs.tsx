@@ -41,6 +41,7 @@ function Blogs() {
                   content={blog.content.slice(0, 200) + "..."}
                   createAt={blog.createAt || "123"}
                   line={true}
+
                 />
 
               </Link>
