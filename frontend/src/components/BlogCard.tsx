@@ -31,7 +31,7 @@ function BlogCard({
 
                 <div className="w-3/4 flex flex-col gap-6 ">
                     <h2 className="text-2xl capitalize font-semibold">{title}</h2>
-                    <p className={`font-satoshi font-medium text-gray-900 min-h-19 ${line ? "max-h-19 overflow-hidden" : ""}`}>{content.split('\n').map((line, index) => (
+                    <p className={`font-satoshi font-medium text-gray-900 min-h-18 ${line ? "max-h-18 overflow-hidden" : ""}`}>{content.split('\n').map((line, index) => (
                         <span key={index}>
                             {line}
                             <br />
