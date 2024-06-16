@@ -25,7 +25,7 @@ function BlogCard({
 
 
     return (
-        <div className="font-clash_display border-b-2 border-gray-200 px-5 py-2 w-full " key={id}>
+        <div className="font-clash_display border-b-2  border-gray-200 px-5 py-2 w-full " key={id}>
             <div className=" gap-3 sm:gap-5 justify-between flex flex-col-reverse sm:flex-row">
 
                 <div className="sm:w-3/4 flex flex-col gap-6 ">

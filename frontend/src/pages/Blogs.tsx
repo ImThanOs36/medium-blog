@@ -17,12 +17,13 @@ function Blogs() {
 
   return (
     <div>
-
-      <Appbar isThat={true} />
+         <Appbar isThat={true} />
+         <div className="fixed inset-0 -z-10 h-full w-full bg-black [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#7776B3_100%)]"></div>
+   
 
 
       {loading ? <Loader /> :
-        <div className="flex justify-center py-20 h-full" onClick={() => {
+        <div className="flex justify-center py-20 h-full " onClick={() => {
 
         }}>
           <div className="w-auto max-w-4xl flex flex-col gap-10 ">

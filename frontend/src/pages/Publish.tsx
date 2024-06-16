@@ -24,6 +24,7 @@ function Publish() {
   return (
     <div>
       <Appbar isThat={false} />
+      <div className="fixed inset-0 -z-10 h-full w-full bg-black [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#7776B3_100%)]"></div>
       <div className="pt-40 p-3">
         <form className="max-w-sm mx-auto flex flex-col  gap-2">
           <label htmlFor="title" className="block mb-2 text-base font-semibold text-gray-900">Title</label>

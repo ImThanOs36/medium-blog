@@ -26,7 +26,7 @@ function Appbar({ isThat }: isThatType) {
 
                         }
                         <div>
-                        <Dropdown />
+                            <Dropdown />
 
                         </div>
 
