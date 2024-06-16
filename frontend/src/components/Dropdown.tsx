@@ -21,7 +21,7 @@ function Dropdown() {
 
         </div></button>
 
-        {!isOpen ? null : <div id="dropdown" className="z-10 absolute top-16 -right-14   bg-black divide-y divide-gray-100 rounded-lg shadow px-1 w-40 text-center">
+        {!isOpen ? null : <div id="dropdown" className="z-10 absolute top-16 -right-0 lg:-right-14   bg-black divide-y divide-gray-100 rounded-lg shadow px-1 w-40 text-center">
           <ul className="py-2 text-base text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
             <li className="cursor-pointer" onClick={() => {
               localStorage.removeItem('token');

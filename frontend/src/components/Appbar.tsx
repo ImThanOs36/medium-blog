@@ -25,8 +25,10 @@ function Appbar({ isThat }: isThatType) {
                             : null
 
                         }
-
+                        <div>
                         <Dropdown />
+
+                        </div>
 
 
 
