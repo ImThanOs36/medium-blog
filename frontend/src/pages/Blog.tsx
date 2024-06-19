@@ -8,15 +8,14 @@ import { useQuery } from "@tanstack/react-query";
 
 
 function Blog() {
-  const { id } = useParams()
+  const { id } = useParams();
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['blog', id],
+    queryKey: ['blog', Number(id)],
     queryFn: fetchBlogs,
     // refetchInterval: 1000
   })
   console.log(data, isLoading, error)
-
 
   return (
     <>

@@ -2,7 +2,7 @@ import Appbar from "../components/Appbar"
 
 
 import fetchBlogs from "../hooks/useProfile"
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import Dates from "../ui/Dates";
 import { Link } from "react-router-dom";
 import Loader from "../ui/Loader";
