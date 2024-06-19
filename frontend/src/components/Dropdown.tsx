@@ -32,7 +32,7 @@ function Dropdown() {
                 Log Out
               </li>
               <li className="hover:bg-indigo-500 rounded-lg p-2 hover:font-medium">
-                <Link to={"/me"}>Profile</Link>
+                <Link to={"/profile"}>Profile</Link>
               </li>
             </ul>
           </div>

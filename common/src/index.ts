@@ -18,6 +18,7 @@ export const updateblog = z.object({
   title: z.string(),
   content: z.string(),
   id: z.number(),
+  published:z.boolean()
 });
 
 export type signinInput = z.infer<typeof signinInput>;

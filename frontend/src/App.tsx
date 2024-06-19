@@ -5,13 +5,15 @@ import Blog from './pages/Blog';
 import Blogs from './pages/Blogs';
 import Publish from './pages/Publish';
 import './App.css'
-import TextArea from './components/TextArea';
+import Profile from './pages/Profile';
+
 
 
 function App() {
 
   return (
     <>
+
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Blogs />} />
@@ -20,9 +22,10 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/blog/:id" element={<Blog />} />
           <Route path="/publish" element={<Publish />} />
-          <Route path="/textarea" element={<TextArea/>} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </BrowserRouter>
+
     </>
   )
 }

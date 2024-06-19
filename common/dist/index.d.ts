@@ -36,14 +36,17 @@ export declare const updateblog: z.ZodObject<{
     title: z.ZodString;
     content: z.ZodString;
     id: z.ZodNumber;
+    published: z.ZodBoolean;
 }, "strip", z.ZodTypeAny, {
     title: string;
     content: string;
     id: number;
+    published: boolean;
 }, {
     title: string;
     content: string;
     id: number;
+    published: boolean;
 }>;
 export type signinInput = z.infer<typeof signinInput>;
 export type signupInput = z.infer<typeof signupInput>;

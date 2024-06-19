@@ -1,53 +1,53 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Appbar from "../components/Appbar";
-import BlogCard from "../components/BlogCard"
-import { useBlogs } from "../hooks/useBlogs";
+
 import Loader from "../ui/Loader";
+import { useQuery } from "@tanstack/react-query";
+import fetchBlogs from "../hooks/useBlogs";
+import BlogCard from "../components/BlogCard";
+import { Key } from "react";
 
 
 
 function Blogs() {
-  const { loading, blogs, authError } = useBlogs();
-  const navigate = useNavigate()
-  const reverseBlogs = [...blogs].reverse()
-  console.log(reverseBlogs)
-  if (authError) {
-    navigate("/signin")
-  }
+  const { data, isLoading } = useQuery({
+
+
+    queryKey: ['Allblogs'],
+    queryFn: fetchBlogs,
+
+  })
+
 
   return (
     <div>
-         <Appbar isThat={true} />
-         <div className="fixed inset-0 -z-10 h-full w-full bg-black [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#7776B3_100%)]"></div>
-   
+      <Appbar isThat={true} />
+      <div className="fixed inset-0 -z-10 h-screen w-full bg-black [background:radial-gradient(125%_125%_at_50%_10%,#fff_50%,#7776B3_100%)]"></div>
 
 
-      {loading ? <Loader /> :
-        <div className="flex justify-center py-20 h-full " onClick={() => {
 
-        }}>
-          <div className="w-auto max-w-4xl flex flex-col gap-10 ">
+      {isLoading ? <Loader /> :
+        <div className="flex justify-center py-20 h-full ">
+          <div className="w-auto max-w-2xl flex flex-col mt-6 ">
 
 
-            {reverseBlogs.map(blog => (
+            {data.map((blog: { id: number; title: string; content: string; author: { name: any; }; createAt: string; }) => (
 
-              <Link to={`/blog/${blog.id}`} key={blog.id}>
-
+              <Link to={`/blog/${blog.id || 1}`} key={blog.id || 1}>
                 <BlogCard
-
                   key={blog.id}
-                  id={blog.id}
-                  author={blog.author.name || "anonymous"}
                   title={blog.title}
-                  content={blog.content.slice(0, 200) + "..."}
-                  createAt={blog.createAt || "123"}
-                  line={true}
+                  content={blog.content}
+                  id={blog.id}
+                  author={blog.author.name || "anyonumos"}
+                  createAt={blog.createAt}
+
 
                 />
-
               </Link>
 
             ))}
+
           </div>
         </div>
       }

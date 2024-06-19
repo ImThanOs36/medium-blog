@@ -1,34 +1,40 @@
 
 import { useParams } from "react-router-dom"
 import BlogCard from "../components/BlogCard"
-import { useBlog } from "../hooks/useBlog"
+import fetchBlogs from "../hooks/useBlog"
 import Appbar from "../components/Appbar";
 import Loader from "../ui/Loader";
+import { useQuery } from "@tanstack/react-query";
 
 
 function Blog() {
   const { id } = useParams()
-  const { loading, blog } = useBlog({ id: id || "1" });
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ['blog', id],
+    queryFn: fetchBlogs,
+    // refetchInterval: 1000
+  })
+  console.log(data, isLoading, error)
 
 
-  // console.log(blog)
   return (
     <>
       <div >
-        <Appbar isThat={false} />
+        <Appbar isThat={true} />
         <div className="fixed inset-0 -z-10 h-full w-full bg-black [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#7776B3_100%)]"></div>
         <div className="flex justify-center py-20 h-full ">
-          {loading ? <Loader /> :
-            <div className="w-full max-w-screen-md  ">
+
+          {isLoading ? <Loader /> :
+            <div className="w-full max-w-2xl  ">
 
               <BlogCard
-                key={blog.id}
-                id={blog.id}
-                author={blog.author.name || "Anonymous"}
-                title={blog.title}
-                content={blog.content}
-                createAt={blog.createAt || "123"}
-                line={false}
+                key={data.id}
+                id={data.id}
+                author={data.author.name || "Anonymous"}
+                title={data.title}
+                content={data.content}
+                createAt={data.createAt || "123"}
               />
             </div>
           }

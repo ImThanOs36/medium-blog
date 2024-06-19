@@ -13,7 +13,29 @@ export const blogRouter = new Hono<{
     userId: any;
   };
 }>();
+
 blogRouter.use("/*", authMiddlewre);
+
+blogRouter.get("/me", async (c) => {
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+  const userId = c.get("userId");
+  console.log(userId);
+  const data = await prisma.blog.findMany({
+    where: {
+      authorId: userId,
+    },
+    orderBy: [
+      {
+        id: "asc",
+      },
+    ],
+  });
+
+  return c.json({ data });
+});
+
 blogRouter.get("/bulk", async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
@@ -97,19 +119,21 @@ blogRouter.put("/:id", async (c) => {
   const id = c.req.param("id");
   const userId = c.get("userId");
   const body = await c.req.json();
-  const { success } = updateblog.safeParse(body);
-  if (!success) {
-    c.status(411);
-    return c.json({ message: "invalid inputs" });
-  }
+  // const { success } = updateblog.safeParse(body);
+  // if (!success) {
+  //   c.status(411);
+  //   return c.json({ message: "invalid inputs" });
+  // }
+  const publishedStatus = body.published ? false : true;
+  console.log(publishedStatus);
+
   const blog = await prisma.blog.update({
     where: {
       id: Number(id),
       authorId: userId,
     },
     data: {
-      title: body.title,
-      content: body.content,
+      published: publishedStatus,
     },
   });
 
