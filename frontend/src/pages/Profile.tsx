@@ -50,7 +50,7 @@ function Profile() {
             <div className="mt-28 flex justify-center ">
 
                 <div className="w-auto md:w-auto ">
-            <h1 className=" text-xl font-clash_display font-semibold text-center">All blogs</h1>
+                    <h1 className=" text-xl font-clash_display font-semibold text-center">All blogs</h1>
 
                     {data?.map((blog) => (
                         <div className="" key={blog.id}>
