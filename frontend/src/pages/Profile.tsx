@@ -57,10 +57,12 @@ function Profile() {
 
 
                             <div className="font-clash_display  px-5 py-2  border-t-2 min-w-96 w-96 border-gray-200 min-h-36  max-h-36 sm:max-h-44 sm:min-h-44 oerflow-clip" key={blog.id || 1}>
-                                <button className="flex  font-satoshi text-xs gap-3 mt-3 hover:scale-105 border-blue-600" onClick={() => {
+                                <button className="flex  font-satoshi text-xs gap-3 mt-3 hover:scale-105 border-blue-600" onClick={(e) => {
+
                                     changeStatus({ id: blog.id, published: blog.published });
-                                    console.log("button clicked...")
-                                    console.log(blog.published, blog.id + "in change Status Fn")
+
+
+
                                 }}>
                                     {blog.published ?
                                         <div className="flex gap-2 items-center bg-yellow-400 rounded-md px-1">
