@@ -28,7 +28,7 @@ blogRouter.get("/me", async (c) => {
     },
     orderBy: [
       {
-        id: "asc",
+        id: "desc",
       },
     ],
   });
@@ -55,6 +55,11 @@ blogRouter.get("/bulk", async (c) => {
       },
       createAt: true,
     },
+    orderBy: [
+      {
+        id: "desc",
+      },
+    ],
   });
   const blogs = data.filter((blog) => blog.title !== "" && blog.content !== "");
   return c.json({ blogs: blogs });

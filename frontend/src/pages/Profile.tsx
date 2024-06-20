@@ -52,8 +52,8 @@ function Profile() {
             <div className="my-10 flex justify-center  ">
 
                 <div className="w-auto sm:w-auto  ">
-                    <div className=" sticky top-[76px] p-2 bg-white border-b-4  -z-10 w-full ">
-                        <div className="flex items-center justify-center ">
+                    <div className=" sticky top-[76px] p-2 bg-white border-b-4   w-full ">
+                        <div className="flex items-center justify-center -z-10 ">
 
                             <h1 className=" text-xl font-clash_display font-semibold text-center">All blogs</h1>
                         </div>

@@ -27,7 +27,7 @@ function Blogs() {
 
 
       {isLoading ? <Loader /> :
-        <div className="flex justify-center sm:py-20 h-full ">
+        <div className="flex justify-center sm:py-10 h-full ">
           <div className="w-auto max-w-2xl flex flex-col mt-6 ">
 
 
