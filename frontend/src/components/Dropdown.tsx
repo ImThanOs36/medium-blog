@@ -13,7 +13,7 @@ function Dropdown() {
       <div className="relative flex justify-center flex-col ">
 
 
-        <button type="button" onClick={handleclick}> <div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full  dark:bg-gray-600 hover:scale-105">
+        <button type="button" onClick={handleclick}> <div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full  dark:bg-gray-600 hover:scale-105 ">
 
           <svg className="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20"
             xmlns="http://www.w3.org/200.svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd">
@@ -31,9 +31,11 @@ function Dropdown() {
               }}>
                 Log Out
               </li>
-              <li className="hover:bg-indigo-500 rounded-lg p-2 hover:font-medium">
-                <Link to={"/profile"}>Profile</Link>
-              </li>
+              <Link to={"/profile"}>
+                <li className="hover:bg-indigo-500 rounded-lg p-2 hover:font-medium">
+                  Profile
+                </li>
+              </Link>
             </ul>
           </div>
           }

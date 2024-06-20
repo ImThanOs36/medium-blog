@@ -7,9 +7,9 @@ interface isThatType {
 
 function Appbar({ isThat }: isThatType) {
     return (
-        <div className="sticky top-0">
+        <div className="sticky top-0  z-10">
 
-            <nav className="backdrop-blur-xl bg-black/90  border-b-4 border-indigo-500 z-10 ">
+            <nav className="backdrop-blur-xl bg-black/90  border-b-4 border-indigo-500 ">
                 <div className="max-w-screen-xl flex flex-wrap items-center gap-5 sm:gap-0 mx-auto p-4 justify-between sm:justify-between">
                     <Link to={"/"}> <h1 className="font-clash_display text-3xl font-bold text-white">  BLOG  It</h1></Link>
 

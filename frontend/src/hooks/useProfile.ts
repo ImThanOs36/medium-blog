@@ -19,5 +19,4 @@ async function fetchBlogs(): Promise<Blog[]> {
   });
   return response.data.data;
 }
-
 export default fetchBlogs;

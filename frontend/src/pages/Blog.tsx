@@ -1,10 +1,10 @@
 
 import { useParams } from "react-router-dom"
-import BlogCard from "../components/BlogCard"
+import BlogCard from "../components/BlogCards/BlogCard"
 import fetchBlogs from "../hooks/useBlog"
 import Appbar from "../components/Appbar";
-import Loader from "../ui/Loader";
 import { useQuery } from "@tanstack/react-query";
+import CardSkeleton from "../components/BlogCards/CardSkeleton";
 
 
 function Blog() {
@@ -22,18 +22,20 @@ function Blog() {
       <div >
         <Appbar isThat={true} />
         {/* <div className="fixed inset-0 -z-10 h-full w-full bg-black [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#7776B3_100%)]"></div> */}
-        <div className="flex justify-center py-20 h-full ">
+        <div className="flex justify-center p-4 h-full ">
 
-          {isLoading ? <Loader /> :
-            <div className="w-full max-w-2xl  ">
+          {isLoading ? <CardSkeleton /> :
+            <div className="w-full flex  justify-center ">
 
               <BlogCard
+
                 key={data.id}
                 id={data.id}
-                author={data.author.name || "Anonymous"}
                 title={data.title}
                 content={data.content}
                 createAt={data.createAt || "123"}
+                author={data.author.name}
+                authorId={data.authorId}
               />
             </div>
           }

@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import Appbar from "../components/Appbar";
-
-import Loader from "../ui/Loader";
 import { useQuery } from "@tanstack/react-query";
 import fetchBlogs from "../hooks/useBlogs";
-import BlogCard from "../components/BlogCard";
+import BlogCard from "../components/BlogCards/BlogsCard";
+
+import CardSkeleton from "../components/BlogCards/CardSkeleton";
 
 
 
@@ -26,30 +26,41 @@ function Blogs() {
 
 
 
-      {isLoading ? <Loader /> :
-        <div className="flex justify-center sm:py-10 h-full ">
-          <div className="w-auto max-w-2xl flex flex-col mt-6 ">
+      {isLoading ? <div className="flex flex-col gap-0"> <CardSkeleton type={"blogs"} /><CardSkeleton type={"blogs"} /><CardSkeleton type={"blogs"} /><CardSkeleton type={"blogs"} /><CardSkeleton type={"blogs"} /></div> : <div className="flex justify-center w-full ">
+
+        <div className=" mt-4 md:max-w-2xl ">
 
 
-            {data.map((blog: { id: number; title: string; content: string; author: { name: any; }; createAt: string; }) => (
-
-              <Link to={`/blog/${blog.id || 1}`} key={blog.id || 1}>
-                <BlogCard
-                  key={blog.id}
-                  title={blog.title}
-                  content={blog.content}
-                  id={blog.id}
-                  author={blog.author.name || "anyonumos"}
-                  createAt={blog.createAt}
+          {data.map((blog: {
+            authorId: number; id: number; title: string; content: string; author: { name: any; }; createAt: string;
+          }) => (
+            <div className="flex md:flex-row justify-between gap-0 flex-col-reverse md:gap-10 p-4" key={blog.id}>
 
 
-                />
-              </Link>
 
-            ))}
+              <div className="sm:min-w-80 w-full  sm:min-h-36 overflow-hidden" >
+                <Link to={`/blog/${blog.id || 1}`}>
+                  <BlogCard
+                    key={blog.id}
+                    title={blog.title}
+                    content={blog.content}
+                    id={blog.id}
+                    author={blog.author.name || "anyonumos"}
+                    createAt={blog.createAt}
+                    authorId={blog.authorId}
 
-          </div>
+                  />
+                </Link>
+
+              </div>
+
+            </div>
+
+          ))}
+
+
         </div>
+      </div>
       }
     </div>
 

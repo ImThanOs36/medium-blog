@@ -6,6 +6,7 @@ import Blogs from './pages/Blogs';
 import Publish from './pages/Publish';
 import './App.css'
 import Profile from './pages/Profile';
+import User from './pages/User';
 
 
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/blog/:id" element={<Blog />} />
           <Route path="/publish" element={<Publish />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/user/:id" element={<User />} />
         </Routes>
       </BrowserRouter>
 
