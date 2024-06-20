@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Loader from "../ui/Loader";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+import Avatar from "../ui/Avatar";
 
 // import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, useState } from "react";
 
@@ -39,6 +40,7 @@ function Profile() {
 
     }
 
+    console.log("name:" + name)
 
     return <div>
 
@@ -47,17 +49,22 @@ function Profile() {
         {isLoading ? <Loader /> : <div>
 
 
-            <div className="mt-28 flex justify-center ">
+            <div className="my-10 flex justify-center  ">
 
-                <div className="w-auto md:w-auto ">
-                    <h1 className=" text-xl font-clash_display font-semibold text-center">All blogs</h1>
+                <div className="w-auto sm:w-auto  ">
+                    <div className=" sticky top-[76px] p-2 bg-white border-b-4  -z-10 w-full ">
+                        <div className="flex items-center justify-center ">
+
+                            <h1 className=" text-xl font-clash_display font-semibold text-center">All blogs</h1>
+                        </div>
+                    </div>
 
                     {data?.map((blog) => (
                         <div className="" key={blog.id}>
 
 
-                            <div className="font-clash_display  px-5 py-2  border-t-2 min-w-96 w-96 border-gray-200 min-h-36  max-h-36 sm:max-h-44 sm:min-h-44 oerflow-clip" key={blog.id || 1}>
-                                <button className="flex  font-satoshi text-xs gap-3 mt-3 hover:scale-105 border-blue-600" onClick={(e) => {
+                            <div className="font-clash_display  px-5 py-0  border-t-2 sm:min-w-96 sm:w-96 border-gray-200 h-36  max-h-36 sm:max-h-36 sm:min-h-36 oerflow-hidden" key={blog.id || 1}>
+                                <button className="flex  font-satoshi text-xs gap-3 mt-3 hover:scale-105 border-blue-600" onClick={() => {
 
                                     changeStatus({ id: blog.id, published: blog.published });
 
@@ -94,25 +101,25 @@ function Profile() {
                                 </button>
 
                                 <Link to={`/blog/${blog.id}`} >
-                                    <div className="">
 
-                                        <div className="flex flex-col justify-between h-32">
 
-                                            <div>
+                                    <div className="flex flex-col justify-between  gap-5  ">
 
-                                                <h2 className=" capitalize text-lg font-semibold">{blog.title || "title"}</h2>
-                                                <p className={`font-satoshi text-xs font-medium text-gray-900 min-h-18 ${true ? "max-h-18 overflow-hidden" : ""}`}>{blog.content.split('\n').map((line, index) => (
-                                                    <span key={index}>
-                                                        {line || "content"}
-                                                        <br />
-                                                    </span>
-                                                ))}</p>
-                                            </div>
+                                        <div>
 
-                                            <Dates date={blog.createAt || "27-20-3"} />
+                                            <h2 className=" capitalize text-lg font-semibold">{blog.title || "title"}</h2>
+                                            <p className={"font-satoshi text-xs font-medium text-gray-900 min-h-10 max-h-10 h-10 "}>{blog.content.slice(0, 100).split('\n').map((line, index) => (
+                                                <span key={index}>
+                                                    {line || "content"}
+                                                    <br />
+                                                </span>
+                                            ))} </p>
                                         </div>
 
+                                        <Dates date={blog.createAt || "27-20-3"} />
                                     </div>
+
+
 
                                 </Link>
                             </div>
@@ -123,11 +130,15 @@ function Profile() {
                     ))}
 
                 </div>
-                {/* <div>
-                    <div className="h-[70vh] p-5 bg-slate-100 rounded-lg w-60 sticky ">
-profile
+                <div className=" hidden md:block">
+                    <div className="h-[70vh] sticky top-28 p-5 bg-slate-100 rounded-lg w-60 border-x-2 gap-5">
+                        <div className="flex items-center justify-center gap-4">
+
+                            <Avatar img={false} />
+                            {/* <p className="font-semibold text-lg font-clash_display">{name}</p> */}
+                        </div>
                     </div>
-                </div> */}
+                </div>
             </div>
         </div>}
     </div>

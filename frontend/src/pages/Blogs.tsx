@@ -22,12 +22,12 @@ function Blogs() {
   return (
     <div>
       <Appbar isThat={true} />
-      <div className="fixed inset-0 -z-10 h-screen w-full bg-black [background:radial-gradient(125%_125%_at_50%_10%,#fff_50%,#7776B3_100%)]"></div>
+      {/* <div className="fixed inset-0 -z-10 h-screen w-full bg-black [background:radial-gradient(125%_125%_at_50%_10%,#fff_50%,#7776B3_100%)]"></div> */}
 
 
 
       {isLoading ? <Loader /> :
-        <div className="flex justify-center py-20 h-full ">
+        <div className="flex justify-center sm:py-20 h-full ">
           <div className="w-auto max-w-2xl flex flex-col mt-6 ">
 
 
