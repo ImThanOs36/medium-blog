@@ -24,7 +24,7 @@ function Blog() {
         {/* <div className="fixed inset-0 -z-10 h-full w-full bg-black [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#7776B3_100%)]"></div> */}
         <div className="flex justify-center p-4 h-full ">
 
-          {isLoading ? <CardSkeleton /> :
+          {isLoading ? <CardSkeleton type={'blog'} /> :
             <div className="w-full flex  justify-center ">
 
               <BlogCard
