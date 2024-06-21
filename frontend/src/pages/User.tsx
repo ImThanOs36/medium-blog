@@ -26,18 +26,18 @@ function User() {
 
 
 
-    return <div className="bg-black min-h-screen">
+    return <div className="bg-black ">
 
         <Appbar isThat={true} />
 
-        {isLoading ? <CardSkeleton type={'blogs'} /> : <div>
+        {isLoading ? <CardSkeleton type={'blogs'} /> : <div >
 
 
-            <div className="mb-5 flex justify-center gap-10 ">
+            <div className=" flex justify-center gap-10 ">
 
                 <div className="w-full md:max-w-xl">
-                    <div className=" sticky top-[76px] p-2 text-white border-b-2   w-full ">
-                        <div className="flex items-center justify-center -z-10 ">
+                    <div className=" sticky top-[76px] p-2 text-white border-b-2  z-40 w-full bg-black">
+                        <div className="flex items-center justify-center ">
 
                             <h1 className=" text-lg font-clash_display font-semibold text-center whitespace-pre">@{username}  on BLOGIt</h1>
                         </div>
