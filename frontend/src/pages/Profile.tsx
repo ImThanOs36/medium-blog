@@ -10,12 +10,12 @@ import { BACKEND_URL } from "../config";
 
 import CardSkeleton from "../components/BlogCards/CardSkeleton";
 import ProfileBlogCard from "../components/BlogCards/ProfileBlogCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 function Profile() {
 
-    const { data, isLoading, status, error, refetch,} = useQuery({
+    const { data, isLoading, status, error, refetch, isSuccess} = useQuery({
 
         queryKey: ['MyBlogs'],
         queryFn: fetchBlogs,
@@ -26,6 +26,15 @@ function Profile() {
     console.log(data, isLoading, status, "error" + error + " in profile route")
 
     const [updatingId, setUpdatingId] = useState<number | null>(null)
+    const [username, setUsername] = useState("")
+
+    useEffect(() => {
+        if (isSuccess && data) {
+            const name = data[0]?.author?.name || "Unknown";
+            setUsername(name)
+        }
+    }, [isSuccess, data])
+
 
     async function changeStatus({ id, published }: { id: number, published: boolean }) {
         setUpdatingId(id)
@@ -49,10 +58,10 @@ function Profile() {
         }
         console.log(published, id + "in change Status Fn")
     }
+ 
 
 
-
-    return <div className="scroll-smooth bg-black min-h-screen">
+    return <div className="scroll-smooth bg-black pb-6">
 
         <Appbar isThat={true} />
         {/* <div className="fixed top-0 z-[-2] h-screen w-screen rotate-180 transform bg-white bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)]"></div> */}
@@ -61,19 +70,24 @@ function Profile() {
 
 
             <div className="flex flex-col items-center gap-2 md:max-w-2xl ">
-               
+                <div className=" sticky top-[76px] p-2 text-white border-b-2   w-full ">
+                    <div className="flex items-center justify-center -z-10 ">
 
-                    {data?.map((blog) => (
+                        <h1 className=" text-lg font-clash_display font-semibold text-center whitespace-pre">{username}'s Profile</h1>
+                    </div>
+                </div>
 
-                        <ProfileBlogCard updatingId={updatingId} key={blog.id} id={blog.id} title={blog.title} content={blog.content} published={blog.published} createAt={blog.createAt} onclick={() => {
+                {data?.map((blog) => (
 
-                            changeStatus({ id: blog.id, published: blog.published });
+                    <ProfileBlogCard updatingId={updatingId} key={blog.id} id={blog.id} title={blog.title} content={blog.content} published={blog.published} createAt={blog.createAt} onclick={() => {
+
+                        changeStatus({ id: blog.id, published: blog.published });
 
 
-                        }} />
+                    }} />
 
-                    ))}
-               
+                ))}
+
             </div>
 
         </div>

@@ -22,17 +22,22 @@ blogRouter.get("/me", async (c) => {
   }).$extends(withAccelerate());
   const userId = c.get("userId");
   console.log(userId);
-  const name = await prisma.user.findUnique({
-    where: {
-      id: userId,
-    },
-    select: {
-      name: true,
-    },
-  });
+
   const data = await prisma.blog.findMany({
     where: {
       authorId: userId,
+    },
+    select: {
+      id: true,
+      author: {
+        select: {
+          name: true,
+        },
+      },
+      published:true,
+      title: true,
+      content: true,
+      createAt: true,
     },
     orderBy: [
       {
@@ -41,7 +46,7 @@ blogRouter.get("/me", async (c) => {
     ],
   });
 
-  return c.json({ data, name });
+  return c.json({ data });
 });
 
 blogRouter.get("/author/:username", async (c) => {
@@ -53,22 +58,21 @@ blogRouter.get("/author/:username", async (c) => {
   const data = await prisma.blog.findMany({
     where: {
       // authorId: Number(id),
-      author:{
-        name:username
+      author: {
+        name: username,
       },
       published: true,
     },
-    select:{
-      author:{
-        select:{
-          name:true
-        }
+    select: {
+      author: {
+        select: {
+          name: true,
+        },
       },
-      title:true,
-      content:true,
-      createAt:true,
-      id:true,
-      
+      title: true,
+      content: true,
+      createAt: true,
+      id: true,
     },
     orderBy: [
       {
