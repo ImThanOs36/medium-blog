@@ -37,7 +37,7 @@ function Blogs() {
 
 
 
-              <div className="sm:min-w-80 w-full  sm:min-h-36 overflow-hidden" >
+              <div className="sm:min-w-80 w-full  sm:min-h-36 overflow-hidden rounded-2xl hover:scale-[1.01] shadow-inner hover:shadow-sm transition-all ease-in-out duration-200 hover:shadow-indigo-600 hover:skew-x-12 " >
 
                 <BlogsCard
                   key={blog.id}
