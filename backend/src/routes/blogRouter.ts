@@ -2,7 +2,7 @@ import { Hono } from "hono";
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { authMiddlewre } from "../middlware/authMiddleware";
-import { blogInput, updateblog } from "@imthanos/common-app";
+import { blogInput } from "@imthanos/common-app";
 
 export const blogRouter = new Hono<{
   Bindings: {
@@ -22,9 +22,38 @@ blogRouter.get("/me", async (c) => {
   }).$extends(withAccelerate());
   const userId = c.get("userId");
   console.log(userId);
+  const name = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+    select: {
+      name: true,
+    },
+  });
   const data = await prisma.blog.findMany({
     where: {
       authorId: userId,
+    },
+    orderBy: [
+      {
+        id: "desc",
+      },
+    ],
+  });
+
+  return c.json({ data, name });
+});
+
+blogRouter.get("/user/:id", async (c) => {
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+
+  const id = c.req.param("id");
+  const data = await prisma.blog.findMany({
+    where: {
+      authorId: Number(id),
+      published: true,
     },
     orderBy: [
       {
@@ -53,6 +82,7 @@ blogRouter.get("/bulk", async (c) => {
           name: true,
         },
       },
+      authorId: true,
       createAt: true,
     },
     orderBy: [
@@ -85,6 +115,7 @@ blogRouter.get("/:id", async (c) => {
         },
       },
       createAt: true,
+      authorId: true,
     },
   });
   if (!blog) {
