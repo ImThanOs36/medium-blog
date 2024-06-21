@@ -44,16 +44,31 @@ blogRouter.get("/me", async (c) => {
   return c.json({ data, name });
 });
 
-blogRouter.get("/user/:id", async (c) => {
+blogRouter.get("/author/:username", async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
 
-  const id = c.req.param("id");
+  const username = c.req.param("username");
   const data = await prisma.blog.findMany({
     where: {
-      authorId: Number(id),
+      // authorId: Number(id),
+      author:{
+        name:username
+      },
       published: true,
+    },
+    select:{
+      author:{
+        select:{
+          name:true
+        }
+      },
+      title:true,
+      content:true,
+      createAt:true,
+      id:true,
+      
     },
     orderBy: [
       {

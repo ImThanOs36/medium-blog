@@ -23,7 +23,7 @@ function Dropdown() {
         <div className="transition-all">
 
 
-          {!isOpen ? null : <div id="dropdown" className="z-10 absolute top-16 -right-0 lg:-right-14   bg-black divide-y divide-gray-100 rounded-lg shadow  w-40 text-center">
+          {!isOpen ? null : <div id="dropdown" className="z-10 absolute top-16 -right-0 lg:-right-14  border-2 border-indigo-600  bg-black divide-y divide-gray-100 rounded-lg shadow  w-40 text-center">
             <ul className="py-2 px-2 text-base  text-gray-700 dark:text-gray-200 font-satoshi  " aria-labelledby="dropdownDefaultButton ">
               <li className="cursor-pointer hover:bg-indigo-500 rounded-lg p-2 hover:font-medium" onClick={() => {
                 localStorage.removeItem('token');

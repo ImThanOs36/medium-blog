@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom"
 import Dates from "../../ui/Dates"
 import StatusTag from "../../ui/StatusTag"
+import { useState } from "react"
 
 
 
@@ -15,7 +16,8 @@ interface BlogCardProps {
     createAt: string,
     authorId?: number
     published: boolean
-    onclick: VoidFunction
+    onclick: VoidFunction,
+    updatingId:number | null
 
 }
 
@@ -28,21 +30,28 @@ function ProfileBlogCard({
     createAt,
     published,
     onclick,
-    id
+    id,
+    updatingId,
 
 
 }: BlogCardProps) {
+   
+   
     return (
 
-        <div className="w-full md:max-w-xl  p-4 flex flex-col   bg-white lg:w-2/4 border-2 border-gray-200  rounded-2xl">
+        <div className="w-full   p-4 flex flex-col   bg-white  border-2 border-gray-200  rounded-2xl">
 
 
             <div className="font-clash_display  py-0  border-b-2  border-gray-200 h-36  oerflow-hidden" >
 
-                <button className="flex  font-satoshi text-xs gap-3 mt-3 hover:scale-105 border-blue-600" onClick={onclick} >
+                <button className="flex font-satoshi text-xs gap-3 mt-3 border-blue-600"  onClick={onclick} onClickCapture={()=>{
+                  
+                }} >
 
 
                     <StatusTag published={published} />
+                    
+                  <span className="font-semibold bg-gray-50 border-2  border-gray-200 px-1.5 py-0.5 rounded-md hover:border-gray-300"> {updatingId == id ? "wait" :( published ? <p>Change To <span className="text-red-600">Hidden </span></p>: <p>Change To <span className="text-yellow-500">Publish </span></p>)}</span>
 
                 </button>
                 <hr />

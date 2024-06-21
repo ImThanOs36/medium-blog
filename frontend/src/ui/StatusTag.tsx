@@ -1,9 +1,9 @@
 
 function StatusTag({ published }: { published: boolean }) {
     return (
-        <div className="pb-4">
+        <div className="pb-4 cursor-default">
             {published ?
-                <div className="flex gap-2 items-center bg-yellow-400 rounded-md px-1">
+                <div className="flex gap-2 items-center bg-yellow-400 rounded-md px-1.5 py-0.5 border-2 border-yellow-400">
                     <div className="rounded-full">
 
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-4">
@@ -15,7 +15,7 @@ function StatusTag({ published }: { published: boolean }) {
                 </div>
 
 
-                : <div className="flex gap-2 items-center bg-red-500 rounded-md px-1 text-white">
+                : <div className="flex gap-2 items-center bg-red-500 rounded-md px-1.5 py-0.5 text-white border-2 border-red-500">
                     <div className="bg-red-500 rounded-full">
 
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-4">

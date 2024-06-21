@@ -1,23 +1,19 @@
 import Appbar from "../components/Appbar"
-
-
 import fetchBlogs from "../hooks/useUser"
-
 import { useParams } from "react-router-dom";
-import Loader from "../ui/Loader";
-
 import BlogsCard from "../components/BlogCards/BlogsCard";
 import { useQuery } from "@tanstack/react-query";
+import CardSkeleton from "../components/BlogCards/CardSkeleton";
 
 
 
 
 
 function User() {
-    const { id } = useParams()
+    const { username } = useParams()
     const { data, isLoading } = useQuery({
 
-        queryKey: ['useBlogs', Number(id)],
+        queryKey: ['useBlogs', String(username)],
         queryFn: fetchBlogs,
 
 
@@ -30,20 +26,20 @@ function User() {
 
 
 
-    return <div>
+    return <div className="bg-black min-h-screen">
 
         <Appbar isThat={true} />
 
-        {isLoading ? <Loader /> : <div>
+        {isLoading ? <CardSkeleton type={'blogs'} /> : <div>
 
 
             <div className="mb-5 flex justify-center gap-10 ">
 
                 <div className="w-full md:max-w-xl">
-                    <div className=" sticky top-[76px] p-2 bg-white border-b-2   w-full ">
+                    <div className=" sticky top-[76px] p-2 text-white border-b-2   w-full ">
                         <div className="flex items-center justify-center -z-10 ">
 
-                            <h1 className=" text-xl font-clash_display font-semibold text-center">All blogs</h1>
+                            <h1 className=" text-lg font-clash_display font-semibold text-center whitespace-pre">@{username}  on BLOGIt</h1>
                         </div>
                     </div>
 
@@ -65,10 +61,11 @@ function User() {
                                         title={blog.title}
                                         content={blog.content}
                                         id={blog.id}
-                                        // author={blog.author.name || "anyonumos"}
+                                        author={blog.author.name}
                                         createAt={blog.createAt}
                                         authorId={blog.authorId}
-                                        author="ThanOs"
+                                        disableLink={true}
+                                
                                     />
 
 

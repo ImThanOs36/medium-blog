@@ -19,7 +19,7 @@ function Blogs() {
 
 
   return (
-    <div className="bg-black sm:h-auto h-lvh ">
+    <div className="bg-black scroll-smooth ">
       <Appbar isThat={true} />
       {/* <div className="absolute top-0 z-[-2] h-screen w-screen rotate-180 transform bg-white bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)]"></div> */}
 
@@ -37,7 +37,7 @@ function Blogs() {
 
 
 
-              <div className="sm:min-w-80 w-full  sm:min-h-36 overflow-hidden rounded-2xl hover:scale-[1.01] shadow-inner hover:shadow-sm transition-all ease-in-out duration-200 hover:shadow-indigo-600 hover:skew-x-12 " >
+              <div className="sm:min-w-80 w-full  sm:min-h-36 overflow-hidden rounded-2xl hover:scale-[1.01] shadow-inner hover:shadow-sm transition-all ease-in-out duration-200 hover:shadow-indigo-600 " >
 
                 <BlogsCard
                   key={blog.id}
@@ -47,6 +47,8 @@ function Blogs() {
                   author={blog.author.name || "anyonumos"}
                   createAt={blog.createAt}
                   authorId={blog.authorId}
+                  disableLink={false}
+                
 
                 />
 

@@ -4,13 +4,13 @@ import Tick from "../ui/Tick"
 
 interface Author {
     author: string,
-    authorId: number
+    disable:boolean,
 }
 
-function Author({ authorId, author }: Author) {
+function Author({ author ,disable}: Author) {
     const navigate = useNavigate()
-    return <button className="w-2/4 flex gap-2" onClick={() => {
-        navigate(`/user/${authorId}`)
+    return <button className="w-auto sm:w-2/4 flex gap-2" disabled={disable} onClick={() => {
+        navigate(`/blog/author/${author}`)
     }}>
         <Avatar img={false} />
         <div className=" font-semibold  font-satoshi flex items-center text-md">{author || "anyonumos"} <Tick /></div>

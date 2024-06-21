@@ -12,7 +12,8 @@ interface BlogCardProps {
     title: string,
     content: string,
     createAt: string,
-    authorId: number
+    authorId: number,
+    disableLink:boolean
 
 }
 
@@ -23,8 +24,9 @@ function BlogsCard({
     content,
     createAt,
     author,
-    authorId,
-    id
+    id,
+    disableLink
+    
 
 
 }: BlogCardProps) {
@@ -36,7 +38,7 @@ function BlogsCard({
 
             <div className="w-full flex flex-col gap-1 ">
                 <div>
-                    <Author author={author} authorId={authorId} />
+                    <Author author={author} disable={disableLink} />
 
                 </div>
                 <hr />
