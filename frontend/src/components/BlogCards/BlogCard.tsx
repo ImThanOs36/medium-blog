@@ -17,7 +17,6 @@ interface BlogCardProps {
 
 
 function BlogCard({
-    id,
     title,
     content,
     createAt,
