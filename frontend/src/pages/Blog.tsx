@@ -40,6 +40,7 @@ function Blog() {
                     createAt={data.createAt || "123"}
                     author={data.author.name}
                     authorId={data.authorId}
+                    disableLink={false}
                   />
                 </div>
               )}

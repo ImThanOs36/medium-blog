@@ -1,4 +1,3 @@
-
 import Appbar from "../components/Appbar";
 import { useQuery } from "@tanstack/react-query";
 import fetchBlogs from "../hooks/useBlogs";
@@ -31,7 +30,7 @@ function Blogs() {
 
 
           {data.map((blog: {
-            authorId: number; id: number; title: string; content: string; author: { name: any; }; createAt: string;
+            authorId: number; id: number; title: string; content: string; author: { name: string; }; createAt: string; 
           }) => (
             <div className="flex md:flex-row justify-between gap-0 flex-col-reverse md:gap-10 p-4" key={blog.id}>
 

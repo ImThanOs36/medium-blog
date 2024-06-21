@@ -179,11 +179,7 @@ blogRouter.put("/:id", async (c) => {
   const id = c.req.param("id");
   const userId = c.get("userId");
   const body = await c.req.json();
-  // const { success } = updateblog.safeParse(body);
-  // if (!success) {
-  //   c.status(411);
-  //   return c.json({ message: "invalid inputs" });
-  // }
+
   const publishedStatus = body.published ? false : true;
   console.log(publishedStatus);
 

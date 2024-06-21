@@ -11,7 +11,8 @@ interface BlogCardProps {
     title: string,
     content: string,
     createAt: string,
-    authorId: number
+    authorId: number,
+    disableLink:boolean
 
 }
 
@@ -21,7 +22,8 @@ function BlogCard({
     content,
     createAt,
     author,
-    authorId
+    disableLink,
+   
 
 
 
@@ -32,7 +34,7 @@ function BlogCard({
 
             <div className="w-full flex flex-col gap-1">
 
-                <Author author={author} authorId={authorId} />
+                <Author author={author} disable={disableLink} />
                 <hr />
                 <h2 className="text-2xl l capitalize font-extrabold font-satoshi">{title}</h2>
                 <p className={`font-satoshi font-medium text-md text-gray-900 overflow-hidden w-full`}>{content.split('\n').map((line, index) => (

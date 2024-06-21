@@ -15,7 +15,7 @@ import { useState } from "react";
 
 function Profile() {
 
-    const { data, isLoading, status, error, refetch, isStale } = useQuery({
+    const { data, isLoading, status, error, refetch,} = useQuery({
 
         queryKey: ['MyBlogs'],
         queryFn: fetchBlogs,
