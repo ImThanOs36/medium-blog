@@ -71,7 +71,7 @@ function Profile() {
 
             <div className="flex flex-col items-center gap-2 md:max-w-2xl ">
                 <div className=" sticky top-[76px] p-2 text-white border-b-2   w-full ">
-                    <div className="flex items-center justify-center -z-10 ">
+                    <div className="flex items-center justify-center ">
 
                         <h1 className=" text-lg font-clash_display font-semibold text-center whitespace-pre">{username}'s Profile</h1>
                     </div>
