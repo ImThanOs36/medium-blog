@@ -28,9 +28,7 @@ function BlogCard({
 }: BlogCardProps) {
     return (
 
-
-
-        <div className="md:w-3/4 lg:w-2/4  p-4 flex flex-col  gap-12 sm:gap-12 h-full w-full border-2 border-gray-200  rounded-md">
+        <div className="md:w-3/4 lg:w-2/4  p-4 flex flex-col  gap-12 sm:gap-12 bg-white w-full border-2 border-gray-200  rounded-2xl">
 
             <div className="w-full flex flex-col gap-1">
 

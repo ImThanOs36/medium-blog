@@ -5,11 +5,10 @@ interface Blog {
   publishedDate: string;
   content: string;
   title: string;
-  author: {
-    name: string;
-  };
+ name:string
   createAt: string;
   published: boolean;
+
 }
 async function fetchBlogs(): Promise<Blog[]> {
   const response = await axios.get(`${BACKEND_URL}/api/v1/blog/me`, {

@@ -99,11 +99,10 @@ blogRouter.get("/:id", async (c) => {
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
   const id = c.req.param("id");
-
+  const userId = c.get("userId");
   const blog = await prisma.blog.findFirst({
     where: {
       id: Number(id),
-      published: true,
     },
     select: {
       id: true,
@@ -116,12 +115,22 @@ blogRouter.get("/:id", async (c) => {
       },
       createAt: true,
       authorId: true,
+      published: true,
     },
   });
   if (!blog) {
     return c.json({ message: "invalid blog id" });
   }
-  return c.json(blog);
+  if (blog?.published === false) {
+    if (blog.authorId === userId) {
+      return c.json(blog);
+    } else {
+      c.status(404);
+      return c.json({ message: "Blog Must Be Private Or Deleted !!" });
+    }
+  } else {
+    return c.json(blog);
+  }
 });
 
 blogRouter.post("/blog", async (c) => {
@@ -176,4 +185,23 @@ blogRouter.put("/:id", async (c) => {
   return c.json({
     id: blog,
   });
+});
+blogRouter.delete("/:id", async (c) => {
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+  const id = c.req.param("id");
+  const userId = c.get("userId");
+
+  const blog = await prisma.blog.delete({
+    where: {
+      id: Number(id),
+      authorId: userId,
+    },
+  });
+
+  if (blog) {
+    c.status(200);
+  }
+  return c.json({ message: "deleted" });
 });

@@ -2,14 +2,14 @@ import Appbar from "../components/Appbar"
 
 
 import fetchBlogs from "../hooks/useUser"
-import { useQuery } from "@tanstack/react-query";
-import Dates from "../ui/Dates";
+
 import { Link, useParams } from "react-router-dom";
 import Loader from "../ui/Loader";
 import Avatar from "../ui/Avatar";
-import { Key } from "react";
+import BlogsCard from "../components/BlogCards/BlogsCard";
+import { useQuery } from "@tanstack/react-query";
 
-// import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, useState } from "react";
+
 
 
 
@@ -39,7 +39,7 @@ function User() {
 
             <div className="mb-5 flex justify-center gap-10 ">
 
-                <div className="w-auto sm:w-auto  ">
+                <div className="w-full md:max-w-xl">
                     <div className=" sticky top-[76px] p-2 bg-white border-b-2   w-full ">
                         <div className="flex items-center justify-center -z-10 ">
 
@@ -47,52 +47,40 @@ function User() {
                         </div>
                     </div>
 
-                    {data?.map((blog: { id: Key | null | undefined; title: any; content: string; createAt: any; }) => (
-                        <div className="" key={blog.id}>
+
+                    <div className=" w-full">
 
 
-                            <div className="font-clash_display  px-5 py-0  border-b-2 sm:min-w-96 sm:w-96 border-gray-200 h-36  max-h-36 sm:max-h-36 sm:min-h-36 oerflow-hidden" key={blog.id || 1}>
-
-
-
-                                <Link to={`/blog/${blog.id}`} >
-
-
-                                    <div className="flex flex-col justify-between  gap-5  ">
-
-                                        <div>
-
-                                            <h2 className=" capitalize text-lg font-semibold">{blog.title || "title"}</h2>
-                                            <p className={"font-satoshi text-xs font-medium text-gray-900 min-h-10 max-h-10 h-10 "}>{blog.content.slice(0, 100).split('\n').map((line: any, index: Key | null | undefined) => (
-                                                <span key={index}>
-                                                    {line || "content"}
-                                                    <br />
-                                                </span>
-                                            ))} </p>
-                                        </div>
-
-                                        <Dates date={blog.createAt || "27-20-3"} />
-                                    </div>
+                        {data.map((blog: {
+                            authorId: number; id: number; title: string; content: string; author: { name: any; }; createAt: string;
+                        }) => (
+                            <div className="flex md:flex-row justify-between gap-0 flex-col-reverse md:gap-10 p-4" key={blog.id}>
 
 
 
-                                </Link>
+                                <div className="sm:min-w-80 w-full  sm:min-h-36 overflow-hidden" >
+
+                                    <BlogsCard
+                                        key={blog.id}
+                                        title={blog.title}
+                                        content={blog.content}
+                                        id={blog.id}
+                                        // author={blog.author.name || "anyonumos"}
+                                        createAt={blog.createAt}
+                                        authorId={blog.authorId}
+                                        author="ThanOs"
+                                    />
+
+
+                                </div>
+
                             </div>
 
+                        ))}
 
 
-                        </div>
-                    ))}
-
-                </div>
-                <div className=" hidden md:block">
-                    <div className="h-screen fixed  -z-10   p-5   w-80 border-x-2 gap-5 flex justify-center ">
-                        <div className="flex items-center justify-center gap-4">
-
-                            <Avatar img={false} />
-                            <p className="font-semibold text-lg font-clash_display">author</p>
-                        </div>
                     </div>
+
                 </div>
             </div>
         </div>}

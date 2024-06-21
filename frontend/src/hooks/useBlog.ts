@@ -9,8 +9,9 @@ async function fetchBlogs({ queryKey }: FetchBlogsParams) {
     headers: {
       Authorization: localStorage.getItem("token"),
       "Content-Type": "application/json",
-    },
-  });
+    }
+  })
+  
   return response.data;
 }
 
