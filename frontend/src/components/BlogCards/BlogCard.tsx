@@ -6,7 +6,7 @@ import Author from "../Author"
 
 
 interface BlogCardProps {
-    id: number,
+    
     author: string
     title: string,
     content: string,

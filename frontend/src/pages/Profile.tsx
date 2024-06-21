@@ -9,9 +9,9 @@ import axios from "axios";
 import { BACKEND_URL } from "../config";
 import Avatar from "../ui/Avatar";
 import CardSkeleton from "../components/BlogCards/CardSkeleton";
-import { useState } from "react";
 
-// import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, useState } from "react";
+
+
 
 
 
@@ -40,7 +40,7 @@ function Profile() {
         console.log(published, id + "in change Status Fn")
 
     }
-    const [name, setName] = useState()
+    
    
     console.log("name:" + name)
 

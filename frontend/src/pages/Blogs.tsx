@@ -22,7 +22,7 @@ function Blogs() {
   return (
     <div>
       <Appbar isThat={true} />
-      {/* <div className="fixed inset-0 -z-10 h-screen w-full bg-black [background:radial-gradient(125%_125%_at_50%_10%,#fff_50%,#7776B3_100%)]"></div> */}
+      <div className="fixed inset-0 -z-10 h-screen w-full bg-black [background:radial-gradient(125%_125%_at_50%_10%,#fff_50%,#7776B3_100%)]"></div>
 
 
 
