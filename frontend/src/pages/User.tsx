@@ -3,9 +3,9 @@ import Appbar from "../components/Appbar"
 
 import fetchBlogs from "../hooks/useUser"
 
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loader from "../ui/Loader";
-import Avatar from "../ui/Avatar";
+
 import BlogsCard from "../components/BlogCards/BlogsCard";
 import { useQuery } from "@tanstack/react-query";
 

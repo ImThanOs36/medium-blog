@@ -4,7 +4,7 @@ import Appbar from "../components/Appbar"
 import fetchBlogs from "../hooks/useProfile"
 import { useQuery } from "@tanstack/react-query";
 
-import { Link } from "react-router-dom";
+
 import axios from "axios";
 import { BACKEND_URL } from "../config";
 
