@@ -1,7 +1,7 @@
 import axios from "axios"
 import { BACKEND_URL } from "../config"
 import { useState } from "react"
-import DeleteAlert from "./DeleteAlert"
+
 import DeletionSuccess from "./DeletionSuccess"
 
 
