@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 
 function Profile() {
 
-    const { data, isLoading, status, error, refetch, isSuccess} = useQuery({
+    const { data, isLoading, status, error, refetch, isSuccess } = useQuery({
 
         queryKey: ['MyBlogs'],
         queryFn: fetchBlogs,
@@ -58,7 +58,7 @@ function Profile() {
         }
         console.log(published, id + "in change Status Fn")
     }
- 
+
 
 
     return <div className="scroll-smooth bg-black pb-6">
@@ -70,7 +70,7 @@ function Profile() {
 
 
             <div className="flex flex-col items-center gap-2 md:max-w-2xl ">
-            <div className=" sticky top-[76px] p-2 text-white border-b-2  z-40 w-full bg-black">
+                <div className=" sticky top-[76px] p-2 text-white border-b-2  z-40 w-full bg-black">
                     <div className="flex items-center justify-center -z-10 ">
 
                         <h1 className=" text-lg font-clash_display font-semibold text-center whitespace-pre">{username}'s Dashboard</h1>
@@ -79,7 +79,7 @@ function Profile() {
 
                 {data?.map((blog) => (
 
-                    <ProfileBlogCard updatingId={updatingId} key={blog.id} id={blog.id} title={blog.title} content={blog.content} published={blog.published} createAt={blog.createAt} onclick={() => {
+                    <ProfileBlogCard updatingId={updatingId} key={blog.id} id={blog.id} title={blog.title} content={blog.content} published={blog.published} createAt={blog.createAt} refetch={refetch} onclick={() => {
 
                         changeStatus({ id: blog.id, published: blog.published });
 

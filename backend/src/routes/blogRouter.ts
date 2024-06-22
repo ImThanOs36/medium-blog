@@ -38,6 +38,7 @@ blogRouter.get("/me", async (c) => {
       title: true,
       content: true,
       createAt: true,
+      
     },
     orderBy: [
       {
@@ -201,7 +202,7 @@ blogRouter.put("/:id", async (c) => {
     id: blog,
   });
 });
-blogRouter.delete("/:id", async (c) => {
+blogRouter.delete("/delete/:id", async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());

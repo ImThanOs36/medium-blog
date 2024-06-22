@@ -1,10 +1,10 @@
 
 function StatusTag({ published }: { published: boolean }) {
     return (
-        <div className="pb-4 cursor-default">
+        <div className="cursor-default ">
             {published ?
                 <div className="flex gap-2 items-center bg-yellow-400 rounded-md px-1.5 py-0.5 border-2 border-yellow-400">
-                    <div className="rounded-full">
+                    <div className="rounded-full ">
 
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-4">
                             <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
@@ -24,7 +24,7 @@ function StatusTag({ published }: { published: boolean }) {
                             <path d="M6.75 12c0-.619.107-1.213.304-1.764l-3.1-3.1a11.25 11.25 0 0 0-2.63 4.31c-.12.362-.12.752 0 1.114 1.489 4.467 5.704 7.69 10.675 7.69 1.5 0 2.933-.294 4.242-.827l-2.477-2.477A5.25 5.25 0 0 1 6.75 12Z" />
                         </svg>
                     </div>
-                    <p className="hidden sm:blocl"><b>Hidden</b></p>
+                    <p className="hidden sm:block"><b>Hidden</b></p>
                 </div>
             }
         </div>

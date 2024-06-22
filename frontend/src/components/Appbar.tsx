@@ -7,7 +7,7 @@ interface isThatType {
 
 function Appbar({ isThat }: isThatType) {
     return (
-        <div className="sticky top-0  z-10">
+        <div className="sticky top-0  z-50">
 
             <nav className="backdrop-blur-xl  bg-black border-b-4 border-indigo-600 ">
                 <div className="max-w-screen-xl flex flex-wrap items-center gap-5 sm:gap-0 mx-auto p-4 justify-between sm:justify-between">

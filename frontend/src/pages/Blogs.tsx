@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import fetchBlogs from "../hooks/useBlogs";
 import CardSkeleton from "../components/BlogCards/CardSkeleton";
 import BlogsCard from "../components/BlogCards/BlogsCard";
+import { Link } from "react-router-dom";
 
 
 
@@ -30,7 +31,7 @@ function Blogs() {
 
 
           {data.map((blog: {
-            authorId: number; id: number; title: string; content: string; author: { name: string; }; createAt: string; 
+            authorId: number; id: number; title: string; content: string; author: { name: string; }; createAt: string;
           }) => (
             <div className="flex md:flex-row justify-between gap-0 flex-col-reverse md:gap-10 p-4" key={blog.id}>
 
@@ -47,7 +48,7 @@ function Blogs() {
                   createAt={blog.createAt}
                   authorId={blog.authorId}
                   disableLink={false}
-                
+
 
                 />
 
@@ -57,7 +58,10 @@ function Blogs() {
             </div>
 
           ))}
+          {/* <div className="fixed bottom-12 shadow-xl shadow-indigo-600 right-10 md:hidden font-bold text-white bg-indigo-500 p-5 rounded-full hover:scale-105">
 
+            <Link to={"/publish"}>New</Link>
+          </div> */}
 
         </div>
       </div>
