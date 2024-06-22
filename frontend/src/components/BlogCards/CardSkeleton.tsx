@@ -9,6 +9,10 @@ function CardSkeleton({ type }: { type: string }) {
                 <div className="h-40 bg-gray-300 rounded-2xl w-auto "></div>
                 <div className="h-40 bg-gray-300 rounded-2xl w-auto "></div>
                 <div className="h-40 bg-gray-300 rounded-2xl w-auto "></div>
+                <div className="h-40 bg-gray-300 rounded-2xl w-auto "></div>
+                <div className="h-40 bg-gray-300 rounded-2xl w-auto "></div>
+                <div className="h-40 bg-gray-300 rounded-2xl w-auto "></div>
+                <div className="h-40 bg-gray-300 rounded-2xl w-auto "></div>
 
             </div>) : <div className="w-full h-full px-1">
                 <div className="h-[80vh] bg-gray-100 rounded-2xl  my-0 p-4 flex flex-col gap-1 animate-pulse">

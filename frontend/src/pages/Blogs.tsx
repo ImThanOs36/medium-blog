@@ -25,7 +25,7 @@ function Blogs() {
 
 
 
-      {isLoading ? <div className="flex flex-col gap-0"> <CardSkeleton type={'blogs'} /><CardSkeleton type={'blogs'} /><CardSkeleton type={'blogs'} /><CardSkeleton type={'blogs'} /><CardSkeleton type={'blogs'} /></div> : <div className="flex justify-center w-full ">
+      {isLoading ? <div className="flex flex-col gap-0"> <CardSkeleton type={'blogs'} /></div> : <div className="flex justify-center w-full ">
 
         <div className="  md:max-w-2xl ">
 
