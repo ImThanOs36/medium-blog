@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import Avatar from "../ui/Avatar"
-import Tick from "../ui/Tick"
+// import Tick from "../ui/Tick"
 
 interface Author {
     author: string,
@@ -13,7 +13,7 @@ function Author({ author ,disable}: Author) {
         navigate(`/blog/author/${author}`)
     }}>
         <Avatar img={false} />
-        <div className=" font-semibold  font-satoshi flex items-center text-md">{author || "anyonumos"} <Tick /></div>
+        <div className=" font-semibold  font-satoshi flex items-center text-md">{author || "anyonumos"}</div>
     </button>
 
 }

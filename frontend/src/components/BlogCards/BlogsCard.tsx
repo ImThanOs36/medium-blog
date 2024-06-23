@@ -44,7 +44,7 @@ function BlogsCard({
                 <hr />
                 <Link to={`/blog/${id}`}>
                     <h2 className="text-xl l capitalize font-extrabold font-satoshi">{title}</h2>
-                    <p className={`font-satoshi h-12 font-medium text-md text-gray-900 overflow-hidden w-full flex flex-wrap`}>{content.split('\n').map((line, index) => (
+                    <p className={`font-satoshi  font-medium text-md text-gray-900 overflow-hidden w-full flex flex-wrap`}>{content.split('\n').map((line, index) => (
                         <span key={index}>
                             {line}
                             <br />
