@@ -34,7 +34,7 @@ function BlogsCard({
 
 
 
-        <div className=" flex flex-col  w-full border-2 bg-white border-gray-200 p-4 rounded-2xl">
+        <div className=" flex flex-col  max-w-sm border-2 bg-white border-gray-200 p-4 rounded-2xl min-w-96">
 
             <div className="w-full flex flex-col gap-1 ">
                 <div>
