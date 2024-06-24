@@ -19,13 +19,11 @@ async function deletePost(id: number, refetch: VoidFunction) {
         console.log(response.data)
         refetch();
     })
-    console.log(id, refetch)
 
 }
 function DeleteButton({ id, refetch }: DeleteButtonProps) {
     const [showAlet, setShowAlert] = useState(false)
     const [showSucess, setShowSucess] = useState(false)
-    console.log(showAlet)
     return (
         <>
             <button onClick={() => {

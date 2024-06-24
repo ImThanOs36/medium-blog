@@ -38,6 +38,7 @@ blogRouter.get("/me", async (c) => {
       title: true,
       content: true,
       createAt: true,
+      updated:true
       
     },
     orderBy: [
@@ -74,6 +75,7 @@ blogRouter.get("/author/:username", async (c) => {
       content: true,
       createAt: true,
       id: true,
+      updated:true
     },
     orderBy: [
       {
@@ -104,6 +106,7 @@ blogRouter.get("/bulk", async (c) => {
       },
       authorId: true,
       createAt: true,
+      updated:true,
     },
     orderBy: [
       {
@@ -136,6 +139,7 @@ blogRouter.get("/:id", async (c) => {
       createAt: true,
       authorId: true,
       published: true,
+      updated:true
     },
   });
   if (!blog) {
@@ -185,8 +189,8 @@ blogRouter.put("/:id", async (c) => {
   const userId = c.get("userId");
   const body = await c.req.json();
 
-  const publishedStatus = body.published ? false : true;
-  console.log(publishedStatus);
+  const {title,content,published} = body;
+  
 
   const blog = await prisma.blog.update({
     where: {
@@ -194,7 +198,10 @@ blogRouter.put("/:id", async (c) => {
       authorId: userId,
     },
     data: {
-      published: publishedStatus,
+      title:title,
+      published: published,
+      content:content,
+      updated:true
     },
   });
 

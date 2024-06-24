@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 
 function Profile() {
 
-    const { data, isLoading, status, error, refetch, isSuccess } = useQuery({
+    const { data, isLoading, refetch, isSuccess } = useQuery({
 
         queryKey: ['MyBlogs'],
         queryFn: fetchBlogs,
@@ -23,7 +23,7 @@ function Profile() {
 
 
     })
-    console.log(data, isLoading, status, "error" + error + " in profile route")
+  
 
     const [updatingId, setUpdatingId] = useState<number | null>(null)
     const [username, setUsername] = useState("")
@@ -56,21 +56,21 @@ function Profile() {
             setUpdatingId(null)
 
         }
-        console.log(published, id + "in change Status Fn")
+        
     }
 
 
 
-    return <div className="scroll-smooth bg-black pb-6">
+    return <div className="scroll-smooth  pb-6">
 
         <Appbar isThat={true} />
-        {/* <div className="fixed top-0 z-[-2] h-screen w-screen rotate-180 transform bg-white bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)]"></div> */}
+        <div className="fixed inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
 
         {isLoading ? <div className="sm:min-w-80 w-full "> <CardSkeleton type={"blogs"} /> </div> : <div className="mb-5 flex justify-center p-4 ">
 
 
             <div className="flex flex-col items-center gap-2 md:max-w-2xl ">
-                <div className=" sticky top-[76px] p-2 text-white border-b-2  z-40 w-full bg-black">
+                <div className=" sticky top-[76px] p-2 text-black border-b-2  z-40 w-full bg-white">
                     <div className="flex items-center justify-center -z-10 ">
 
                         <h1 className=" text-lg font-clash_display font-semibold text-center whitespace-pre">{username}'s Dashboard</h1>

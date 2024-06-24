@@ -19,8 +19,9 @@ function Blog() {
 
   return (
     <>
-      <div className="bg-black h-screen fixed left-0 right-0 ">
+      <div className=" min-h-screen ">
         <Appbar isThat={true} />
+        <div className="fixed inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
         <div className="h-full">
           {isError ? (
             <div>Error</div>
@@ -31,7 +32,7 @@ function Blog() {
                   <CardSkeleton type={'blog'} />
                 </div>
               ) : (
-                <div className="w-full flex justify-center ">
+                <div className="w-full flex justify-center  ">
                   <BlogCard
                     key={data.id}
                     id={data.id}
@@ -41,6 +42,7 @@ function Blog() {
                     author={data.author.name}
                     authorId={data.authorId}
                     disableLink={false}
+                    updated={data.updated}
                   />
                 </div>
               )}

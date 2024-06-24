@@ -32,114 +32,76 @@ function Blogs() {
 
     }
   }, [data]);
+
+
+
   return (
-    <div className=" scroll-smooth bg-slate-300">
+    <div className={`scroll-smooth `}>
       <Appbar isThat={true} />
-      {/* <div className="absolute top-0 z-[-2] h-screen w-screen rotate-180 transform bg-white bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)]"></div> */}
+      <div className="fixed inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
 
 
-      {isLoading ? <div className="flex flex-col gap-0"> <CardSkeleton type={'blogs'} /></div> : <div className="flex justify-center  p-4">
+      {isLoading ? <div className="flex flex-col gap-0"> <CardSkeleton type={'blogs'} /></div> : <div className="flex justify-center  px-2 py-8">
 
-        <div className="flex flex-wrap md:flex-nowrap justify-center   md:max-w-3xl   ">
+        <div className="flex flex-col md:flex-row justify-center gap-4  md:max-w-3xl  ">
 
-          <div className="">
+          <div className={`w-full md:w-1/2 flex flex-col gap-4 `}>
             {firstRow.map((blog: {
+              updated: boolean;
               authorId: number; id: number; title: string; content: string; author: { name: string; }; createAt: string;
             }) => (
-              <div className="flex flex-col flex-wrap  justify-between gap-0 p-4" key={blog.id}>
 
 
+              <div key={blog.id} className="w-full overflow-hidden rounded-2xl hover:scale-[1.01] hover:shadow-sm transition-all ease-in-out duration-200 hover:shadow-gray-50" >
 
-                <div className=" overflow-hidden rounded-2xl hover:scale-[1.01] hover:shadow-lg transition-all ease-in-out duration-200 hover:shadow-gray-600" >
+                <BlogsCard
+                  key={blog.id}
+                  title={blog.title}
+                  content={blog.content}
+                  id={blog.id}
+                  author={blog.author.name || "anyonumos"}
+                  createAt={blog.createAt}
+                  authorId={blog.authorId}
+                  disableLink={false}
+                  updated={blog.updated}
+             
 
-                  <BlogsCard
-                    key={blog.id}
-                    title={blog.title}
-                    content={blog.content}
-                    id={blog.id}
-                    author={blog.author.name || "anyonumos"}
-                    createAt={blog.createAt}
-                    authorId={blog.authorId}
-                    disableLink={false}
-
-
-                  />
-
-
-                </div>
+                />
 
               </div>
+
+
 
             ))}
           </div>
-          <div className="pt-4">
-          {secondRow.map((blog: {
+          <div className="w-full md:w-1/2 flex flex-col gap-4">
+            {secondRow.map((blog: {
               authorId: number; id: number; title: string; content: string; author: { name: string; }; createAt: string;
             }) => (
-              <div className="flex flex-col flex-wrap  justify-between gap-0 p-4" key={blog.id}>
 
 
+              <div key={blog.id} className="w-full overflow-hidden rounded-2xl hover:scale-[1.01] hover:shadow-lg transition-all ease-in-out duration-200 hover:shadow-gray-600" >
 
-                <div className=" overflow-hidden rounded-2xl hover:scale-[1.01] hover:shadow-lg transition-all ease-in-out duration-200 hover:shadow-gray-600" >
+                <BlogsCard
+                  key={blog.id}
+                  title={blog.title}
+                  content={blog.content}
+                  id={blog.id}
+                  author={blog.author.name || "anyonumos"}
+                  createAt={blog.createAt}
+                  authorId={blog.authorId}
+                  disableLink={false} 
+                  updated={false}                
 
-                  <BlogsCard
-                    key={blog.id}
-                    title={blog.title}
-                    content={blog.content}
-                    id={blog.id}
-                    author={blog.author.name || "anyonumos"}
-                    createAt={blog.createAt}
-                    authorId={blog.authorId}
-                    disableLink={false}
-
-
-                  />
-
-
-                </div>
+                />
 
               </div>
 
-            ))}
 
+
+            ))}
           </div>
 
-
-          {/* <div>
-
-            {thirdRow.map((blog: {
-              authorId: number; id: number; title: string; content: string; author: { name: string; }; createAt: string;
-            }) => (
-              <div className="flex justify-between gap-0 flex-col md:gap-10 p-4" key={blog.id}>
-
-
-
-                <div className=" w-full min-w-80 max-w-80 overflow-hidden rounded-2xl hover:scale-[1.01] hover:shadow-lg transition-all ease-in-out duration-200 hover:shadow-gray-600 " >
-                  <BlogsCard
-                    key={blog.id}
-                    title={blog.title}
-                    content={blog.content}
-                    id={blog.id}
-                    author={blog.author.name || "anyonumos"}
-                    createAt={blog.createAt}
-                    authorId={blog.authorId}
-                    disableLink={false}
-
-
-                  />
-
-
-                </div>
-
-              </div>
-
-            ))}
-
-          </div> */}
-          {/* <div className="fixed bottom-12 shadow-xl shadow-indigo-600 right-10 md:hidden font-bold text-white bg-indigo-500 p-5 rounded-full hover:scale-105">
-
-            <Link to={"/publish"}>New</Link>
-          </div> */}
 
         </div>
       </div>
