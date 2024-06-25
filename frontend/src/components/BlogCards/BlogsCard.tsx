@@ -38,10 +38,10 @@ function BlogsCard({
         'bg-[#F5F7F8]',
         'bg-purple-100',
         'bg-indigo-100',
-        'bg-blue-100',
         'bg-violet-100',
         'bg-pink-100',
         'bg-violet-100',
+        'bg-[#FFEFEF]'
 
 
     ];

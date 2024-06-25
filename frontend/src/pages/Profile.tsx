@@ -1,7 +1,7 @@
 import Appbar from "../components/Appbar"
 
 
-import fetchBlogs from "../hooks/useProfile"
+import { fetchBlogs, userName } from "../hooks/useProfile"
 import { useQuery } from "@tanstack/react-query";
 
 
@@ -10,12 +10,13 @@ import { BACKEND_URL } from "../config";
 
 import CardSkeleton from "../components/BlogCards/CardSkeleton";
 import ProfileBlogCard from "../components/BlogCards/ProfileBlogCard";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 
 function Profile() {
 
-    const { data, isLoading, refetch, isSuccess } = useQuery({
+    const { data, isLoading, refetch, isFetched, isRefetching } = useQuery({
 
         queryKey: ['MyBlogs'],
         queryFn: fetchBlogs,
@@ -23,17 +24,12 @@ function Profile() {
 
 
     })
-  
+
 
     const [updatingId, setUpdatingId] = useState<number | null>(null)
-    const [username, setUsername] = useState("")
 
-    useEffect(() => {
-        if (isSuccess && data) {
-            const name = data[0]?.author?.name || "Unknown";
-            setUsername(name)
-        }
-    }, [isSuccess, data])
+
+
 
 
     async function changeStatus({ id, published }: { id: number, published: boolean }) {
@@ -56,7 +52,7 @@ function Profile() {
             setUpdatingId(null)
 
         }
-        
+
     }
 
 
@@ -66,16 +62,21 @@ function Profile() {
         <Appbar isThat={true} />
         <div className="fixed inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
 
-        {isLoading ? <div className="sm:min-w-80 w-full "> <CardSkeleton type={"blogs"} /> </div> : <div className="mb-5 flex justify-center p-4 ">
+        {isLoading || isRefetching ? <div className="sm:min-w-80 w-full "> <CardSkeleton type={"blogs"} /> </div> : <div className="mb-5 flex justify-center p-4 ">
 
 
             <div className="flex flex-col items-center gap-2 md:max-w-2xl ">
                 <div className=" sticky top-[76px] p-2 text-black border-b-2  z-40 w-full bg-white">
-                    <div className="flex items-center justify-center -z-10 ">
+                    <div className="flex items-center justify-center flex-col -z-10 ">
 
-                        <h1 className=" text-lg font-clash_display font-semibold text-center whitespace-pre">{username}'s Dashboard</h1>
+                        <h1 className=" text-lg font-clash_display font-semibold text-center whitespace-pre">{isFetched && userName ? userName : "My"}'s Dashboard</h1>
+                        <span className="font-satoshi font-medium">Total Blgs :{data?.length}</span>
                     </div>
                 </div>
+                {data?.length === 0 ? <div className="flex flex-col gap-2 text-center text-xl font-medium">
+
+                    <span className="font-satoshi ">It Looks Like You Dont Any Blog ,</span>  <span className="font-satoshi  ">Dont Worry You Can Write One,  <Link className="underline text-indigo-600" to={"/publish"}>Here</Link></span>  </div> : ""}
+
 
                 {data?.map((blog) => (
 

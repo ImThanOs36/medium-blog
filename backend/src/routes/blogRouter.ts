@@ -22,7 +22,14 @@ blogRouter.get("/me", async (c) => {
   }).$extends(withAccelerate());
   const userId = c.get("userId");
   console.log(userId);
-
+  const UserName = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+    select: {
+      name: true,
+    },
+  });
   const data = await prisma.blog.findMany({
     where: {
       authorId: userId,
@@ -34,12 +41,11 @@ blogRouter.get("/me", async (c) => {
           name: true,
         },
       },
-      published:true,
+      published: true,
       title: true,
       content: true,
       createAt: true,
-      updated:true
-      
+      updated: true,
     },
     orderBy: [
       {
@@ -48,7 +54,7 @@ blogRouter.get("/me", async (c) => {
     ],
   });
 
-  return c.json({ data });
+  return c.json({ data, name: UserName?.name });
 });
 
 blogRouter.get("/author/:username", async (c) => {
@@ -75,7 +81,7 @@ blogRouter.get("/author/:username", async (c) => {
       content: true,
       createAt: true,
       id: true,
-      updated:true
+      updated: true,
     },
     orderBy: [
       {
@@ -106,7 +112,7 @@ blogRouter.get("/bulk", async (c) => {
       },
       authorId: true,
       createAt: true,
-      updated:true,
+      updated: true,
     },
     orderBy: [
       {
@@ -139,7 +145,7 @@ blogRouter.get("/:id", async (c) => {
       createAt: true,
       authorId: true,
       published: true,
-      updated:true
+      updated: true,
     },
   });
   if (!blog) {
@@ -189,8 +195,7 @@ blogRouter.put("/:id", async (c) => {
   const userId = c.get("userId");
   const body = await c.req.json();
 
-  const {title,content,published} = body;
-  
+  const { title, content, published } = body;
 
   const blog = await prisma.blog.update({
     where: {
@@ -198,10 +203,10 @@ blogRouter.put("/:id", async (c) => {
       authorId: userId,
     },
     data: {
-      title:title,
+      title: title,
       published: published,
-      content:content,
-      updated:true
+      content: content,
+      updated: true,
     },
   });
 

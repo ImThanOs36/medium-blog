@@ -1,7 +1,8 @@
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+
 interface Blog {
-  author:{name:string},
+  author: { name: string };
   id: number;
   publishedDate: string;
   content: string;
@@ -10,12 +11,16 @@ interface Blog {
   createAt: string;
   published: boolean;
 }
+let userName: string = "My";
 async function fetchBlogs(): Promise<Blog[]> {
   const response = await axios.get(`${BACKEND_URL}/api/v1/blog/me`, {
     headers: {
       Authorization: localStorage.getItem("token"),
     },
   });
+  userName = response.data.name;
+  console.log(userName, response.data)
   return response.data.data;
 }
-export default fetchBlogs;
+
+export { fetchBlogs, userName };

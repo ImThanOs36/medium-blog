@@ -19,7 +19,7 @@ function User() {
 
 
     })
-
+    
 
     console.log(typeof (data))
     console.log(data)
@@ -37,9 +37,10 @@ function User() {
 
                 <div className="w-full md:max-w-xl">
                     <div className=" sticky top-[76px] p-2 text-black border-b-2  z-40 w-full bg-white">
-                        <div className="flex items-center justify-center ">
+                        <div className="flex items-center flex-col justify-center ">
 
                             <h1 className=" text-lg font-clash_display font-semibold text-center whitespace-pre">@{username}  on BLOGIt</h1>
+                            <span className="font-satoshi font-medium ">Total Blogs : {data.length}</span>
                         </div>
                     </div>
 

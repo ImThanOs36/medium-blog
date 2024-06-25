@@ -30,22 +30,10 @@ function BlogCard({
 
 
 }: BlogCardProps) {
-    const accentColors = [
-        'bg-[#F5F7F8]',
-        'bg-purple-100',
-        'bg-indigo-100',
-        'bg-blue-100',
-        'bg-green-100',
-      
-    ];
-    function getRandomInt(max: number) {
-        return Math.floor(Math.random() * max);
-    }
 
-    const DivBgColor = accentColors[getRandomInt(accentColors.length)]
     return (
 
-        <div className={`md:w-3/4 lg:w-2/4  p-4 flex flex-col  gap-12 sm:gap-12 ${DivBgColor} w-full border-2 border-gray-200  rounded-2xl shadow-md `}>
+        <div className={`md:w-3/4 lg:w-2/4  p-4 flex flex-col  gap-12 sm:gap-12 bg-[#F5F7F8] w-full border-2 border-gray-200  rounded-2xl shadow-md `}>
 
             <div className="w-full flex flex-col gap-1">
                 <div className="flex justify-between ">

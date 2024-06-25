@@ -34,6 +34,11 @@ function Auth({ type }: { type: "signup" | "signin" }) {
     }
     return (
         <div className='font-satoshi'>
+            <div className='flex flex-col items-center pb-12 '>
+               <span> For Testing <Link className='underline' to={"/signin"}> Signin</Link></span>
+               <span> Email: testing@gmail.com</span>
+               <span> Password: password</span>
+            </div>
             <div className="mx-auto border bg-gray-50 px-4 py-4 rounded-md flex flex-col  ">
                 <div className='text-base text-red-600 text-center font-bold' >
                     {isError ? <p>Login or Password Invalid</p> : ""}
