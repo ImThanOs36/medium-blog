@@ -1,5 +1,5 @@
 
-import Dates from "../../ui/Dates"
+import Dates from "../../ui/CreatedDate"
 import Author from "../Author"
 
 
@@ -42,7 +42,7 @@ function BlogCard({
                 {updated ? <div className="text-xs font-medium">Updated</div> : ""}
                 </div>
                 <hr className="border-gray-300 "/>
-                <h2 className="text-2xl l capitalize font-extrabold font-satoshi">{title}</h2>
+                <h2 className="text-2xl  capitalize font-extrabold font-satoshi">{title}</h2>
                 <p className={`font-satoshi font-medium text-md text-gray-900 overflow-hidden w-full`}>{content.split('\n').map((line, index) => (
                     <p key={index}>
                         {line}

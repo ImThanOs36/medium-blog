@@ -1,6 +1,6 @@
 
 import { Link, useNavigate } from "react-router-dom"
-import Dates from "../../ui/Dates"
+import Dates from "../../ui/CreatedDate"
 import StatusTag from "../../ui/StatusTag"
 import DeleteButton from "../../ui/DeleteButton"
 import EditButton from "../../ui/EditButton"

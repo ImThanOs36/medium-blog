@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom"
-import Dates from "../../ui/Dates"
+import Dates from "../../ui/CreatedDate"
 import Author from "../Author"
 
 
