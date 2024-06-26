@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 
 import { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 function Dropdown() {
   const navigate = useNavigate()
@@ -8,6 +9,8 @@ function Dropdown() {
   function handleclick() {
     setOpen(!isOpen)
   }
+
+  const {logout} = useAuth()
   return (
     <>
       <div className="relative flex justify-center flex-col ">
@@ -25,12 +28,7 @@ function Dropdown() {
 
           {!isOpen ? null : <div id="dropdown" className="z-10 absolute top-16 -right-0 lg:-right-14  border-2 border-[#745ec5]  bg-black divide-y divide-gray-100 rounded-lg shadow  w-40 text-center">
             <ul className="py-2 px-2 text-base  text-gray-700 dark:text-gray-200 font-satoshi  " aria-labelledby="dropdownDefaultButton ">
-              <li className="cursor-pointer hover:bg-[#745ec5] rounded-lg p-2 hover:font-medium" onClick={() => {
-                localStorage.removeItem('token');
-                
-
-                navigate("/signin")
-              }}>
+              <li className="cursor-pointer hover:bg-[#745ec5] rounded-lg p-2 hover:font-medium" onClick={logout}>
                 Log Out
               </li>
               <Link to={"/profile"}>

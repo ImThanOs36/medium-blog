@@ -204,7 +204,7 @@ blogRouter.put("/:id", async (c) => {
     },
     data: {
       title: title,
-      published: published,
+      published: !published,
       content: content,
       updated: true,
     },

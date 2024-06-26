@@ -3,6 +3,7 @@ import { signupInput } from '@imthanos/common-app'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { BACKEND_URL } from '../config'
+import Loader from '../ui/Loader'
 
 
 
@@ -11,6 +12,7 @@ import { BACKEND_URL } from '../config'
 
 function Auth({ type }: { type: "signup" | "signin" }) {
     const navigate = useNavigate()
+    const [isLoading, setIsloading] = useState(false)
     const [isError, setisError] = useState()
     const [postInput, setPostInputs] = useState<signupInput>({
         name: '',
@@ -19,6 +21,7 @@ function Auth({ type }: { type: "signup" | "signin" }) {
 
     })
     async function sendRequest() {
+        setIsloading(true)
         try {
             const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type == 'signup' ? 'signup' : 'signin'}`, postInput);
             const token = response.data.token;
@@ -28,6 +31,7 @@ function Auth({ type }: { type: "signup" | "signin" }) {
         catch (e: any) {
 
             setisError(e.response.data.message)
+            setIsloading(false)
         }
 
 
@@ -35,9 +39,9 @@ function Auth({ type }: { type: "signup" | "signin" }) {
     return (
         <div className='font-satoshi'>
             <div className='flex flex-col items-center pb-12 '>
-               <span> For Testing <Link className='underline' to={"/signin"}> Signin</Link></span>
-               <span> Email: testing@gmail.com</span>
-               <span> Password: password</span>
+                <span> For Testing <Link className='underline' to={"/signin"}> Signin</Link></span>
+                <span> Email: testing@gmail.com</span>
+                <span> Password: password</span>
             </div>
             <div className="mx-auto border bg-gray-50 px-4 py-4 rounded-md flex flex-col  ">
                 <div className='text-base text-red-600 text-center font-bold' >
@@ -66,7 +70,7 @@ function Auth({ type }: { type: "signup" | "signin" }) {
                     }))
 
                 }} />
-                <button type="submit" onClick={sendRequest} className="text-center text-white bg-black font-medium rounded-lg text-base w-full sm:w-auto px-5 py-2.5 capitalize">{type}</button>
+                <button type="submit" onClick={sendRequest} className="text-center text-white bg-black font-medium rounded-lg text-base w-full sm:w-auto px-5 py-2.5 capitalize flex gap-1 justify-center">{isLoading ? <Loader /> : (type)}</button>
                 <div>
                     <p className='text-base pb-1 text-center'> {type == 'signup' ? " Already have an account ," : "dont have an account, "}
                         <Link to={type === "signin" ? "/signup" : "/signin"}>

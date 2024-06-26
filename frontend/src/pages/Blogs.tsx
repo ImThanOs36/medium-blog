@@ -11,6 +11,18 @@ import { useNavigate } from "react-router-dom";
 
 
 function Blogs() {
+
+
+
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      navigate("/signin")
+    }
+
+
+  }, [])
+
   const { data, isLoading } = useQuery({
 
 
@@ -33,21 +45,19 @@ function Blogs() {
 
     }
   }, [data]);
-const navigate = useNavigate()
-  if(!localStorage.getItem('token')){
-    navigate("/signin")
-  }
 
 
   return (
     <div className={`scroll-smooth `}>
       <Appbar isThat={true} />
       <div className="fixed inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"></div>
-    <div className="text-center font-satoshi font-medium text-2xl mt-10">Story, Thoughts, Feelings Just BLOG It</div>
+      <div className="text-center font-satoshi text-2xl mt-10 font-semibold "><h1 className=" underline underline-offset-4">
+
+        Story, Thoughts, Feelings Just BLOG It </h1></div>
 
       {isLoading ? <div className="flex flex-col gap-0"> <CardSkeleton type={'blogs'} /></div> : <div className="flex justify-center  px-2 py-8">
 
-        <div className="flex flex-col md:flex-row justify-center gap-4  md:max-w-3xl  ">
+        <div className="flex flex-col md:flex-row justify-center gap-4  md:max-w-3xl max-w-lg w-full  ">
 
           <div className={`w-full md:w-1/2 flex flex-col gap-4 `}>
             {firstRow.map((blog: {
@@ -56,7 +66,7 @@ const navigate = useNavigate()
             }) => (
 
 
-              <div key={blog.id} className="w-full overflow-hidden rounded-2xl hover:scale-[1.01] hover:shadow-sm transition-all ease-in-out duration-200 hover:shadow-gray-50" >
+              <div key={blog.id} className="w-full overflow-hidden rounded-2xl hover:scale-[1.01] hover:shadow-lg transition-all ease-in-out duration-200 hover:shadow-gray-400" >
 
                 <BlogsCard
                   key={blog.id}
@@ -68,7 +78,7 @@ const navigate = useNavigate()
                   authorId={blog.authorId}
                   disableLink={false}
                   updated={blog.updated}
-             
+
 
                 />
 
@@ -84,7 +94,7 @@ const navigate = useNavigate()
             }) => (
 
 
-              <div key={blog.id} className="w-full overflow-hidden rounded-2xl hover:scale-[1.01] hover:shadow-lg transition-all ease-in-out duration-200 hover:shadow-gray-600" >
+              <div key={blog.id} className="w-full overflow-hidden rounded-2xl hover:scale-[1.01] hover:shadow-lg transition-all ease-in-out duration-200 hover:shadow-gray-400" >
 
                 <BlogsCard
                   key={blog.id}
@@ -94,8 +104,8 @@ const navigate = useNavigate()
                   author={blog.author.name || "anyonumos"}
                   createAt={blog.createAt}
                   authorId={blog.authorId}
-                  disableLink={false} 
-                  updated={false}                
+                  disableLink={false}
+                  updated={false}
 
                 />
 

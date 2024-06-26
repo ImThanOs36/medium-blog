@@ -61,18 +61,18 @@ function Profile() {
 
         <Appbar isThat={true} />
         <div className="fixed inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+        <div className=" sticky top-[76px] p-2 text-black border-b-2  z-40 w-full bg-white">
+            <div className="flex items-center justify-center flex-col -z-10 ">
 
-        {isLoading || isRefetching ? <div className="sm:min-w-80 w-full "> <CardSkeleton type={"blogs"} /> </div> : <div className="mb-5 flex justify-center p-4 ">
+                <h1 className=" text-lg font-clash_display font-semibold text-center whitespace-pre">{isLoading ? "My" : userName}'s Dashboard</h1>
+                <span className="font-satoshi font-medium">Total Blgs :{data?.length}</span>
+            </div>
+        </div>
+
+        {isLoading ? <div className="sm:min-w-80 w-full "> <CardSkeleton type={"blogs"} /> </div> : <div className="mb-5 flex justify-center p-4 ">
 
 
             <div className="flex flex-col items-center gap-2 md:max-w-2xl ">
-                <div className=" sticky top-[76px] p-2 text-black border-b-2  z-40 w-full bg-white">
-                    <div className="flex items-center justify-center flex-col -z-10 ">
-
-                        <h1 className=" text-lg font-clash_display font-semibold text-center whitespace-pre">{isFetched && userName ? userName : "My"}'s Dashboard</h1>
-                        <span className="font-satoshi font-medium">Total Blgs :{data?.length}</span>
-                    </div>
-                </div>
                 {data?.length === 0 ? <div className="flex flex-col gap-2 text-center text-xl font-medium">
 
                     <span className="font-satoshi ">It Looks Like You Dont Any Blog ,</span>  <span className="font-satoshi  ">Dont Worry You Can Write One,  <Link className="underline text-indigo-600" to={"/publish"}>Here</Link></span>  </div> : ""}
