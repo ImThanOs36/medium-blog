@@ -36,14 +36,11 @@ function BlogsCard({
 }: BlogCardProps) {
     const accentColors = [
         'bg-[#F5F7F8]',
-        'bg-purple-100',
-        'bg-indigo-100',
-        'bg-violet-100',
-        'bg-pink-100',
-        'bg-violet-100',
-        'bg-[#FFEFEF]'
-
-
+        'bg-[#F4EEFF]',
+        'bg-[#FFF7FC]',
+        'bg-[#F9F5F6]',
+        'bg-[#D9D7F1]',
+        'bg-[#F9F3DF]',
     ];
     function getRandomInt(max: number) {
         return Math.floor(Math.random() * max);
