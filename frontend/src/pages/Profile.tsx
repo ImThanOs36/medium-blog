@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 
 function Profile() {
 
-    const { data, isLoading, refetch, isFetched, isRefetching } = useQuery({
+    const { data, isLoading, refetch} = useQuery({
 
         queryKey: ['MyBlogs'],
         queryFn: fetchBlogs,

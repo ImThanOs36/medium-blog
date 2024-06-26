@@ -1,10 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 
 function Dropdown() {
-  const navigate = useNavigate()
+ 
   const [isOpen, setOpen] = useState(false)
   function handleclick() {
     setOpen(!isOpen)
