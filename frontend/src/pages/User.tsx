@@ -19,7 +19,7 @@ function User() {
 
 
     })
-    
+
 
     console.log(typeof (data))
     console.log(data)
@@ -28,7 +28,7 @@ function User() {
 
     return <div className="">
 
-<div className="fixed inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"></div>
+        <div className="fixed inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"></div>
         <Appbar isThat={true} />
         {isLoading ? <CardSkeleton type={'blogs'} /> : <div >
 
@@ -66,7 +66,7 @@ function User() {
                                         createAt={blog.createAt}
                                         authorId={blog.authorId}
                                         disableLink={true}
-                                         updated={false}
+                                        updated={false}
                                     />
 
 

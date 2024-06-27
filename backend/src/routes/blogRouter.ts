@@ -132,6 +132,7 @@ blogRouter.get("/:id", async (c) => {
   const blog = await prisma.blog.findFirst({
     where: {
       id: Number(id),
+      published: true,
     },
     select: {
       id: true,
@@ -142,16 +143,16 @@ blogRouter.get("/:id", async (c) => {
           name: true,
         },
       },
+      likes: true,
       createAt: true,
       authorId: true,
-      published: true,
       updated: true,
     },
   });
   if (!blog) {
     return c.json({ message: "invalid blog id" });
   }
-  if (blog?.published === false) {
+  if (blog?.published == false) {
     if (blog.authorId === userId) {
       return c.json(blog);
     } else {
@@ -214,6 +215,44 @@ blogRouter.put("/:id", async (c) => {
     id: blog,
   });
 });
+
+blogRouter.put("/likes/:id", async (c) => {
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+  const id = c.req.param("id");
+  const userId = c.get("userId");
+  const body = await c.req.json();
+
+  if (!userId) {
+    return c.json({ Errro: "authorization  Error" });
+  }
+
+  const { like } = body;
+  let setLike = 0;
+  if (like == true) {
+    setLike = 1;
+  } else if (like == false) {
+    setLike = -1;
+  } else {
+    setLike = 0;
+  }
+  console.log(like);
+  const blog = await prisma.blog.update({
+    where: {
+      id: Number(id),
+    },
+    data: {
+      likes: {
+        increment: setLike,
+      },
+    },
+  });
+
+  return c.json({
+    likes: blog.likes,
+  });
+});
 blogRouter.delete("/delete/:id", async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
@@ -232,4 +271,53 @@ blogRouter.delete("/delete/:id", async (c) => {
     c.status(200);
   }
   return c.json({ message: "deleted" });
+});
+
+blogRouter.post("/comment/:id", async (c) => {
+  const userId = c.get("userId");
+  console.log("userId:" + userId);
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+  const body = await c.req.json();
+  const postId = c.req.param("id");
+  const { comment } = body;
+  const comm = await prisma.comment.create({
+    data: {
+      content: comment,
+      postId: Number(postId),
+      authorId: userId,
+    },
+  });
+  return c.json({ comment: comm });
+});
+
+blogRouter.get("/comment/:id", async (c) => {
+  const userId = c.get("userId");
+  console.log("userId:" + userId);
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+  const postid = c.req.param("id");
+  const comm = await prisma.comment.findMany({
+    where: {
+      postId: Number(postid),
+    },
+    select: {
+      author: {
+        select: {
+          name: true,
+        },
+      },
+      content: true,
+      id: true,
+      createdAt: true,
+    },
+    orderBy: [
+      {
+        id: "desc",
+      },
+    ],
+  });
+  return c.json({ comments: comm });
 });
