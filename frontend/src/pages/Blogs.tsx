@@ -17,7 +17,7 @@ function Blogs() {
   const navigate = useNavigate()
   useEffect(() => {
     if (!localStorage.getItem('token')) {
-      navigate("/signin")
+      navigate("/signup")
     }
 
 
