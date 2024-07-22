@@ -4,7 +4,7 @@ import fetchBlogs from "../hooks/useBlogs";
 import CardSkeleton from "../components/BlogCards/CardSkeleton";
 import BlogsCard from "../components/BlogCards/BlogsCard";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 
 
 
@@ -13,16 +13,6 @@ import { useNavigate } from "react-router-dom";
 function Blogs() {
 
 
-
-  const navigate = useNavigate()
-  useEffect(() => {
-    if (!localStorage.getItem('token')) {
-      navigate("/signup")
-    }
-
-
-  }, [])
-
   const { data, isLoading } = useQuery({
 
 
@@ -30,7 +20,8 @@ function Blogs() {
     queryFn: fetchBlogs,
 
   })
-
+  console.log("FROR ENV : " + import.meta.env.VITE_BACKEND_URL
+  )
   const [firstRow, setFirstRow] = useState([]);
   const [secondRow, setSecondRow] = useState([]);
 

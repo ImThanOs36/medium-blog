@@ -14,9 +14,7 @@ export const blogRouter = new Hono<{
   };
 }>();
 
-blogRouter.use("/*", authMiddlewre);
-
-blogRouter.get("/me", async (c) => {
+blogRouter.get("/me", authMiddlewre, async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
@@ -143,15 +141,26 @@ blogRouter.get("/:id", async (c) => {
           name: true,
         },
       },
-      likes: true,
+      published: true,
       createAt: true,
       authorId: true,
       updated: true,
     },
   });
+
+  const Findlike = await prisma.like.findFirst({
+    where: {
+      postId: Number(id),
+    },
+    select: {
+      authorId: true,
+    },
+  });
+  const count = Findlike?.authorId.length;
   if (!blog) {
     return c.json({ message: "invalid blog id" });
   }
+
   if (blog?.published == false) {
     if (blog.authorId === userId) {
       return c.json(blog);
@@ -160,11 +169,11 @@ blogRouter.get("/:id", async (c) => {
       return c.json({ message: "Blog Must Be Private Or Deleted !!" });
     }
   } else {
-    return c.json(blog);
+    return c.json({ ...blog, count: count });
   }
 });
 
-blogRouter.post("/blog", async (c) => {
+blogRouter.post("/blog", authMiddlewre, async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
@@ -188,7 +197,8 @@ blogRouter.post("/blog", async (c) => {
     id: blog.id,
   });
 });
-blogRouter.put("/:id", async (c) => {
+
+blogRouter.put("/:id", authMiddlewre, async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
@@ -216,44 +226,84 @@ blogRouter.put("/:id", async (c) => {
   });
 });
 
-blogRouter.put("/likes/:id", async (c) => {
+blogRouter.put("/likes/:id", authMiddlewre, async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
-  const id = c.req.param("id");
+  const id = Number(c.req.param("id"));
   const userId = c.get("userId");
-  const body = await c.req.json();
 
   if (!userId) {
     return c.json({ Errro: "authorization  Error" });
   }
 
-  const { like } = body;
-  let setLike = 0;
-  if (like == true) {
-    setLike = 1;
-  } else if (like == false) {
-    setLike = -1;
-  } else {
-    setLike = 0;
-  }
-  console.log(like);
-  const blog = await prisma.blog.update({
+  const isLiked = await prisma.like.findFirst({
     where: {
-      id: Number(id),
-    },
-    data: {
-      likes: {
-        increment: setLike,
+      postId: Number(id),
+      authorId: {
+        has: userId,
       },
     },
   });
+  if (isLiked) {
+    return c.json({ msg: "liked" });
+  }
+  const likes = await prisma.like.update({
+    where: {
+      postId: Number(id),
+    },
+    data: {
+      authorId: {
+        push: userId,
+      },
+    },
+  });
+  const length = likes.authorId.length;
+
+  return c.json({ message: "sucess" });
+});
+blogRouter.get("/likes/:id", authMiddlewre, async (c) => {
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+  const id = Number(c.req.param("id"));
+  const userId = c.get("userId");
+
+  const likes = await prisma.like.findFirst({
+    where: {
+      postId: id,
+    },
+    select: {
+      authorId: true,
+    },
+  });
+  const likeCount = likes?.authorId.length || 0;
 
   return c.json({
-    likes: blog.likes,
+    count: likeCount,
   });
 });
-blogRouter.delete("/delete/:id", async (c) => {
+blogRouter.post("/likes/:id", authMiddlewre, async (c) => {
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+  const id = Number(c.req.param("id"));
+  const userId = c.get("userId");
+
+  const likes = await prisma.like.create({
+    data: {
+      postId: id,
+      authorId: [userId],
+    },
+  });
+  const likeCount = likes.authorId.length || 0;
+
+  return c.json({
+    count: likeCount,
+  });
+});
+
+blogRouter.delete("/delete/:id", authMiddlewre, async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
@@ -273,7 +323,7 @@ blogRouter.delete("/delete/:id", async (c) => {
   return c.json({ message: "deleted" });
 });
 
-blogRouter.post("/comment/:id", async (c) => {
+blogRouter.post("/comment/:id", authMiddlewre, async (c) => {
   const userId = c.get("userId");
   console.log("userId:" + userId);
   const prisma = new PrismaClient({

@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from 'react'
 import { signupInput } from '@imthanos/common-app'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { BACKEND_URL } from '../config'
+// import { BACKEND_URL } from '../config'
 import Loader from '../ui/Loader'
 
 
@@ -23,7 +23,7 @@ function Auth({ type }: { type: "signup" | "signin" }) {
     async function sendRequest() {
         setIsloading(true)
         try {
-            const response = await axios.post(`${BACKEND_URL}/api/v1/user/${type == 'signup' ? 'signup' : 'signin'}`, postInput);
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/user/${type == 'signup' ? 'signup' : 'signin'}`, postInput);
             const token = response.data.token;
             localStorage.setItem('token', "Bareer " + token);
             navigate("/blogs")

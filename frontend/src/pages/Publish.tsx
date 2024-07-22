@@ -1,7 +1,6 @@
 import { blogInput } from "@imthanos/common-app";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { BACKEND_URL } from "../config";
 import { useNavigate, useParams } from "react-router-dom";
 import Appbar from "../components/Appbar";
 import { useQuery } from "@tanstack/react-query";
@@ -47,8 +46,8 @@ function Publish() {
       setLoading(true);
       try {
         const url = isEdit
-          ? `${BACKEND_URL}/api/v1/blog/${id}`
-          : `${BACKEND_URL}/api/v1/blog/blog`;
+          ? `${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/${id}`
+          : `${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/blog`;
         const method = isEdit ? 'put' : 'post';
         await axios({
           method,

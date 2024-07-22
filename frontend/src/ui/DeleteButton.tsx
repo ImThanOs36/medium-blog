@@ -1,5 +1,5 @@
 import axios from "axios"
-import { BACKEND_URL } from "../config"
+// import { BACKEND_URL } from "../config"
 import { useState } from "react"
 
 import DeletionSuccess from "./DeletionSuccess"
@@ -11,7 +11,7 @@ interface DeleteButtonProps {
 }
 
 async function deletePost(id: number, refetch: VoidFunction) {
-    await axios.delete(`${BACKEND_URL}/api/v1/blog/delete/${id}`, {
+    await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/delete/${id}`, {
         headers: {
             Authorization: localStorage.getItem('token')
         }

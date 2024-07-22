@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BACKEND_URL } from "../config";
+// import { BACKEND_URL } from "../config";
 
 interface Blog {
   author: { name: string };
@@ -13,7 +13,7 @@ interface Blog {
 }
 let userName: string = "My";
 async function fetchBlogs(): Promise<Blog[]> {
-  const response = await axios.get(`${BACKEND_URL}/api/v1/blog/me`, {
+  const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/me`, {
     headers: {
       Authorization: localStorage.getItem("token"),
     },

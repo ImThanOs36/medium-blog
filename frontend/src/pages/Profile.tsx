@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 
 
 import axios from "axios";
-import { BACKEND_URL } from "../config";
+// import { BACKEND_URL } from "../config";
 
 import CardSkeleton from "../components/BlogCards/CardSkeleton";
 import ProfileBlogCard from "../components/BlogCards/ProfileBlogCard";
@@ -36,7 +36,7 @@ function Profile() {
         setUpdatingId(id)
         try {
 
-            await axios.put(`${BACKEND_URL}/api/v1/blog/${id}`, { published }, {
+            await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/${id}`, { published }, {
                 headers: {
                     Authorization: localStorage.getItem('token')
                 }

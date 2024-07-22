@@ -5,12 +5,12 @@ import fetchBlogs from "../hooks/useBlog"
 import Appbar from "../components/Appbar";
 import { useQuery } from "@tanstack/react-query";
 import CardSkeleton from "../components/BlogCards/CardSkeleton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Comment from "../ui/Comment";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
 import CloseButton from "../ui/CloseButton";
 import Loader from "../ui/Loader";
+
 
 
 function Blog() {
@@ -28,12 +28,15 @@ function Blog() {
   const [Loading, setLoading] = useState(false)
   const [comment, setComment] = useState("")
 
+  useEffect(() => {
+    getComments(id)
+  }, [])
 
-  async function getComments(id: number) {
+  async function getComments(id?: string) {
     console.log("reached Function")
     console.log(Loading)
     setLoading(true)
-    const blogs = await axios.get(`${BACKEND_URL}/api/v1/blog/comment/${id}`, {
+    const blogs = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/comment/${id}`, {
       headers: {
         Authorization: localStorage.getItem('token')
       }
@@ -45,13 +48,13 @@ function Blog() {
     setLoading(false)
     console.log(Loading)
   }
-  async function putComments(id: number, comment: string) {
+  async function putComments(id: string, comment: string) {
     if (comment === "") {
       alert("inputs are empty")
       return false
     }
     console.log("reached Function")
-    await axios.post(`${BACKEND_URL}/api/v1/blog/comment/${id}`, { comment }, {
+    await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/v1/blog/comment/${id}`, { comment }, {
       headers: {
         Authorization: localStorage.getItem('token')
       }
@@ -76,6 +79,7 @@ function Blog() {
                 </div>
               ) : (
                 <div className="w-full flex justify-center  gap-2 ">
+
                   <BlogCard
                     key={data.id}
                     id={data.id}
@@ -88,14 +92,14 @@ function Blog() {
                     updated={data.updated}
                     onClickComment={() => {
                       setIsComments(!isComments)
-                      getComments(blogId)
+                      getComments(String(blogId))
                     }}
-                    likes={data.likes}
+                    count={data.count}
                     onClickLike={() => {
                       refetch();
                     }}
                   />
-                  {<div className={`p-4  ${isComments ? "block" : "hidden"} md:max-w-72  md:relative fixed bottom-0 w-screen h-[70vh]  bg-gray-50 rounded-xl shadow-sm shadow-gray-600 md:h-auto`}>
+                  {<div className={`p-4  ${isComments ? "block" : "hidden"} md:block md:max-w-72  md:relative fixed bottom-0 w-screen h-[70vh]  bg-gray-50 rounded-xl shadow-sm shadow-gray-600 md:h-auto`}>
                     <div className="w-full flex justify-center">
 
                       <span className=" font-clash_display font-semibold">  Comments</span>
@@ -115,7 +119,7 @@ function Blog() {
                           setComment(e.target.value)
                         }} />
                         <button type="submit" className=" bg-[#745ec5]  text-white px-2 rounded-md " onClick={() => {
-                          putComments(Number(id), comment)
+                          putComments(String(id), comment)
                         }}>Comment</button>
                       </div>
                       {Loading ? <div className="w-full h-full flex items-center justify-center"><Loader /></div> :

@@ -34,6 +34,7 @@ model Blog {
   updatedAt DateTime  @default(now())
   updated   Boolean   @default(false)
   comments  Comment[]
+  Likes     Like[]
 }
 
 model Comment {
@@ -44,4 +45,11 @@ model Comment {
   post      Blog     @relation(fields: [postId], references: [id])
   author    User     @relation(fields: [authorId], references: [id])
   createdAt DateTime @default(now())
+}
+
+model Like {
+  id       Int  @id @default(autoincrement())
+  postId   Int  @unique
+  authorId Int[] @default([])
+  post     Blog @relation(fields: [postId], references: [id])
 }

@@ -2,6 +2,7 @@
 import CommentButton from "../../ui/CommentButton"
 import Dates from "../../ui/CreatedDate"
 import LikeButton from "../../ui/LikeButton"
+import ShareButton from "../../ui/ShareButton"
 import Author from "../Author"
 
 
@@ -17,7 +18,7 @@ interface BlogCardProps {
     disableLink: boolean,
     updated: boolean,
     onClickComment: VoidFunction
-    likes: number
+    count: number
     onClickLike: VoidFunction
 
 }
@@ -32,7 +33,7 @@ function BlogCard({
     updated,
     onClickComment,
     onClickLike,
-    likes,
+    count,
     id,
 
 
@@ -47,7 +48,11 @@ function BlogCard({
                 <div className="flex justify-between ">
 
                     <Author author={author} disable={disableLink} />
-                    {updated ? <div className="text-xs font-medium">Updated</div> : ""}
+                    <div className="flex gap-4 items-center justify-center">
+
+                        <ShareButton id={id} />
+                        {updated ? <div className="text-xs font-medium text-purple-700">Updated</div> : ""}
+                    </div>
                 </div>
                 <hr className="border-gray-300 " />
                 <h2 className="text-2xl  capitalize font-extrabold font-satoshi">{title}</h2>
@@ -62,8 +67,9 @@ function BlogCard({
 
                 <Dates date={createAt} />
                 <div className="flex gap-10 items-center ">
-
-                    <LikeButton id={id} count={likes} onClick={onClickLike} />
+                    <button >
+                        <LikeButton id={id} count={count} onClick={onClickLike}/>
+                    </button>
                     <CommentButton onClick={onClickComment} />
 
                 </div>
