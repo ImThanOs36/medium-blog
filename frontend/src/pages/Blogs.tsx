@@ -4,7 +4,7 @@ import fetchBlogs from "../hooks/useBlogs";
 import CardSkeleton from "../components/BlogCards/CardSkeleton";
 import BlogsCard from "../components/BlogCards/BlogsCard";
 import { useEffect, useState } from "react";
-
+import isLoggedIn from "../hooks/isLoggedIn";
 
 
 
@@ -12,7 +12,11 @@ import { useEffect, useState } from "react";
 
 function Blogs() {
 
-
+  if (isLoggedIn()) {
+    console.log("loggedIn")
+  } else {
+    console.log("logged Out")
+  }
   const { data, isLoading } = useQuery({
 
 

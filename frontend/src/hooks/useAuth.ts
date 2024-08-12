@@ -6,9 +6,9 @@ export function useAuth() {
   const navigate = useNavigate();
 
   function logout() {
-    localStorage.removeItem("token"); // Remove the token
-    queryClient.clear(); // Clear the cache
-    navigate("/signin"); // Redirect to login page
+    localStorage.removeItem("token"); 
+    queryClient.clear(); 
+    navigate("/signin"); 
   }
 
   return { logout };

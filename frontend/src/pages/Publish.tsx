@@ -8,6 +8,7 @@ import fetchBlogs from "../hooks/useBlog";
 import Loader from "../ui/Loader";
 import Author from "../components/Author";
 import Date from "../ui/Date";
+import isLoggedIn from "../hooks/isLoggedIn";
 
 
 
@@ -21,7 +22,11 @@ function Publish() {
     title: '',
     content: '',
   });
-
+  setTimeout(() => {
+    if (!isLoggedIn()) {
+      navigate("/signin")
+    }
+  }, 2000);
   const { data } = useQuery({
     queryKey: ['blog', Number(id)],
     queryFn: fetchBlogs,
@@ -115,12 +120,12 @@ function Publish() {
             className="font-satoshi font-medium text-md text-gray-900 overflow-hidden w-full border-none outline-none  p-2 bg-[#F5F7F8] overflow-y-auto resize-z "
             placeholder="Let's write what you feel ...."
             value={post.content}
-            
+
             onChange={(e) => setPostInputs({ ...post, content: e.target.value })}
           />
 
           <div>
-            <Date/>
+            <Date />
           </div>
 
         </form>

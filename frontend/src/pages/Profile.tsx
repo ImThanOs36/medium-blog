@@ -6,16 +6,21 @@ import { useQuery } from "@tanstack/react-query";
 
 
 import axios from "axios";
-// import { BACKEND_URL } from "../config";
+import isLoggedIn from "../hooks/isLoggedIn";
 
 import CardSkeleton from "../components/BlogCards/CardSkeleton";
 import ProfileBlogCard from "../components/BlogCards/ProfileBlogCard";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 function Profile() {
-
+    const navigate = useNavigate()
+    setTimeout(() => {
+        if(!isLoggedIn()){
+         navigate("/signin")   
+        }
+    }, 2000);
     const { data, isLoading, refetch} = useQuery({
 
         queryKey: ['MyBlogs'],

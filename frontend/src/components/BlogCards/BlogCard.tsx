@@ -28,7 +28,7 @@ function BlogCard({
     title,
     content,
     createAt,
-    author,
+author,
     disableLink,
     updated,
     onClickComment,
