@@ -28,7 +28,7 @@ function BlogCard({
     title,
     content,
     createAt,
-author,
+    author,
     disableLink,
     updated,
     onClickComment,
@@ -45,7 +45,7 @@ author,
         <div className={`md:w-3/4 lg:w-2/4 h-min p-4 flex flex-col  gap-12 sm:gap-12 bg-[#F5F7F8] w-full border-2 border-gray-200  rounded-2xl shadow-md `}>
 
             <div className="w-full flex flex-col gap-1">
-                <div className="flex justify-between "> 
+                <div className="flex justify-between ">
 
                     <Author author={author} disable={disableLink} />
                     <div className="flex gap-4 items-center justify-center">
@@ -68,7 +68,7 @@ author,
                 <Dates date={createAt} />
                 <div className="flex gap-10 items-center ">
                     <button >
-                        <LikeButton id={id} count={count} onClick={onClickLike}/>
+                        <LikeButton id={id} count={count} onClick={onClickLike} />
                     </button>
                     <CommentButton onClick={onClickComment} />
 

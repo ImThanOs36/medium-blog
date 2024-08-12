@@ -92,11 +92,11 @@ function Publish() {
             <Author disable={true} author="me" />
             <button
               type="button"
-              className="font-satoshi text-white border-2 border-black hover:bg-[#050708]/90 max-w-28 font-medium rounded-lg bg-black px-3 text-center flex justify-center"
+              className="font-satoshi text-white border-2 border-black hover:bg-[#050708]/90 w-18 font-medium rounded-lg bg-black px-3 text-center flex justify-center"
               onClick={handleSubmit}
             >
               {loading ? (
-                <Loader />
+               "Publishing..."
               ) : (
                 "Publish"
               )}
