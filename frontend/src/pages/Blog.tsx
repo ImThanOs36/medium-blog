@@ -10,13 +10,12 @@ import Comment from "../ui/Comment";
 import axios from "axios";
 import CloseButton from "../ui/CloseButton";
 import Loader from "../ui/Loader";
-
-
+import { useNavigate } from "react-router-dom";
 
 function Blog() {
   const { id } = useParams();
   const blogId = Number(id)
-
+  const navigate = useNavigate()
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ['blog', Number(id)],
     queryFn: fetchBlogs,
@@ -69,16 +68,32 @@ function Blog() {
         <Appbar isThat={true} />
         <div className="fixed inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]"></div>
         <div className="h-full">
+          <div className="w-full flex justify-center">
+
+            <div className="md:w-3/4 py-3 flex  justify-start w-full p-2 ">
+
+              <button className="font-bold text-white bg-[#745ec5] px-4 py-4 rounded-full hover:scale-105" onClick={() => {
+                navigate(-1)
+              }}> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                </svg>
+              </button>
+            </div>
+          </div>
           {isError ? (
             <div>Error</div>
           ) : (
             <div className="flex justify-center p-4 w-full ">
+
               {isLoading ? (
                 <div className="w-full  md:w-3/4 lg:w-2/4 ">
                   <CardSkeleton type={'blog'} />
                 </div>
               ) : (
                 <div className="w-full flex justify-center  gap-2 ">
+
+
+
 
                   <BlogCard
                     key={data.id}

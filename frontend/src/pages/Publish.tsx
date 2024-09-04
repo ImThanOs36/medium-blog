@@ -5,7 +5,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import Appbar from "../components/Appbar";
 import { useQuery } from "@tanstack/react-query";
 import fetchBlogs from "../hooks/useBlog";
-import Loader from "../ui/Loader";
 import Author from "../components/Author";
 import Date from "../ui/Date";
 import isLoggedIn from "../hooks/isLoggedIn";
